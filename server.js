@@ -1,4 +1,4 @@
-
+var io = require('socket.io')(3000);
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://tester:test@ds023118.mlab.com:23118/league');
 var rest = require('rest');
