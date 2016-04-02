@@ -1,6 +1,6 @@
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://Admin:adminboi@ds015710.mlab.com:15710/leaguebet');
+mongoose.connect('mongodb://tester:test@ds023118.mlab.com:23118/league');
 var rest = require('rest');
 var rest, mime, client;
 var app = require('express')();
@@ -10,9 +10,78 @@ rest = require('rest'),
 mime = require('rest/interceptor/mime'); 
 client = rest.wrap(mime);
 
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.on('open', function() {
+  console.log("connected to mongodb");
+});
+
+
+var userSchema = mongoose.Schema ({
+
+  name : String,
+  email : String,
+  password : String,
+     }, {collection: 'User'});
+
+var user = mongoose.model('User', userSchema);
 io.on('connection', function(socket){
   console.log('a user connected');
       socket.on('register', function(userName, Password){
+          socket.on('registerUser', function (userName, password, email) {
+      //Add code to check for same usernames, add to the db database and send response
+      var tempUser = user({name: userName, email : email, password : password})
+      console.log(userName, password, email);
+
+    var tempId = socket['id'];
+
+    user.findOne({name : userName}, function(err,obj) { 
+
+      console.log("test 6");
+    console.log(obj); 
+    if (obj == null) {
+      console.log("nothing there");
+
+     tempUser.save(function (err, tempUser) {
+
+        if (err) {
+          return console.error(err);
+          //Broadcast that the registration failed
+          
+         socket.emit('registerUnsuccesfull', "nowork");
+        } 
+          console.log("Sent properly");
+          socket.emit('registerSuccesfull', userName);
+      });
+
+    }
+
+    else {
+    console.log("there is something there")
+
+    socket.emit('registerUnsuccesfull', "nowork");
+    }
+    });
+    });
+
+    socket.on('loginUser', function (email, password) {
+      //Check the db database
+    user.findOne({email : email, password : password}, function(err,obj) { 
+
+    console.log(obj); 
+    if (obj == null) {
+
+      socket.emit('loginUnsuccessfull', "didnotwork");
+
+    }
+    else {
+    socket.emit('loginSuccesfull', "worked");
+
+    }
+    });
+      
+    });
+
 
         });
 });
