@@ -1,0 +1,299 @@
+<!DOCTYPE HTMl>
+<html lang="en">
+
+<head>
+  <title>Troll thig</title>
+  <meta charset="utf-8" />
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="dist/sweetalert.css"> -->
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"/> -->
+  <link rel="stylesheet" type="text/css" href="./main.css">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet'type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'>
+   <!-- <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script> -->
+   <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+
+  <script type="text/javascript" src="server.js"></script>
+<style>
+.nav {
+transition-duration: .5s;
+}
+</style>
+
+  <script>
+  $(function() {
+    $('a[href*="#"]:not([href="#"])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html, body').animate({
+            scrollTop: target.offset().top
+          }, 1000);
+          return false;
+        }
+      }
+    });
+  });
+  </script>
+
+</head>
+<body>
+  <nav class=".navbar .navbar-default .navbar-static-top" role="navigation">
+    <div class="container-fluid nav">
+      <div class="navbar-header">
+        <p class="textbig" id="derp"style="padding-left:10%; width:500px;">   
+          Troll thing
+        </p>
+      </div>
+      <div style="float:right">
+        <ul class="navbar" style="float:right; width:130%;">
+          <span style="display:inline-block">
+            <li id="same">
+              <a href="#" id="courseslabel">
+                <p id="troll">
+                  Info1.0
+                </p>
+              </a>
+            </li>
+          </span>
+          <span style="display:inline-block">
+            <li id="same">
+              <a href="#" id="courseslabel">
+                <p id="troll">
+                  Info1
+                </p>
+              </a>
+            </li>
+          </span>
+          <span style="display:inline-block">
+            <li>
+              <a id="courseslabel" href="register.html">
+                <p onclick="Register()">
+                	Register
+                </p>
+              </a>
+            </li>
+          </span>
+          <span style="display:inline-block">
+            <li>
+              <a id="courseslabel" href="login.html">
+                <p onclick="Login()">
+                  Login
+                </p>
+              </a>
+            </li>
+          </span>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<script>
+function Register(){
+
+}
+function Login(){
+	
+}
+ $(document).ready(function(){       
+   var scroll_start = 0;
+   var startchange = $('.nav');
+   var offset = startchange.offset();
+   $(document).scroll(function() { 
+      scroll_start = $(this).scrollTop();
+      if(scroll_start > offset.top) {
+          $('.nav').css('background-color', 'rgba(255,255,255,1.0)');
+          $('.nav').css('color', 'rgba(0,0,0,1.0)');
+          $('p#derp').css('color', 'black');
+          $('p#troll').css('color','black');
+       } else {
+          $('.nav').css('background-color', 'transparent');
+          $('.nav').css('color', 'rgba(255,255,255,1.0)');
+          $('p#derp').css('color', 'white');
+          $('p#troll').css('color','white');
+       }
+     });
+   });
+
+$(window).resize(function () { 
+   $('body').css('padding-top', parseInt($('#main-navbar').css("height"))+10);
+});
+
+$(window).load(function () { 
+   $('body').css('padding-top', parseInt($('#main-navbar').css("height"))+10);         
+}); 
+</script>
+
+   
+  <section class="full-page" id="intro">
+    <div class="container-fluid">
+    <div class="row" style="position:relative;">
+      	<div class="col-md-8 col-md-offset-4" style="white-space:nowrap; padding-top:15%; padding-right:5%;text-align:right;">
+            <h1 style="text-align:right; color:white; font-size:50px"><b>
+            Gaming. Reimagined.</b>
+            </h1>
+            <br>
+            <br>
+          	<p id="bsdescription">
+              <b>
+                An interactive betting 
+              </b>
+            </p>
+            <p id="bsdescription">
+              <b>
+                Bitcoin
+              </b>
+            </p>
+            <p id="bsdescription">
+              <b>
+                Troll
+              </b>
+            </p>
+            </p>
+        </div>
+      </div>
+      <div><center>
+        <a href="#info"><img src="images/downbutton.png" id="downbutton"></a>
+      </div></center>
+        <script type='text/javascript'>
+      vvpw = $(window).width();
+      vph = $(window).height() + 20;
+      $('.full-page').height(vph);
+    </script>
+  </section>
+
+</div>
+
+  <section id="basicinfo" data-type="background" data-speed="10">
+    <div class = "infotitle container-fluid"><center>
+      <h2 style="font-size:40px; text-align:center; font-color:black;"> Betting hax</h2>
+      <br>
+      <p style="width:70%; font-size:20px"> Troll thing is <b>leading the movement</b> towards betting, where there is a <b>high demand for </b>. Due to lack of betting oppurtunies in the community, many USians are forced to obtain rp in illegal ways. However, bitcoin is their <b>ticket to escape this life of torrent</b>, ensuring each and every single student graduates with a job to lead them out of their current conditions.</p>
+        </center>
+      </div>
+    </div>
+  </section>
+
+  <section id="info" class="full-page" data-type="background" data-speed="10" style="padding-top:5%; padding-bottom:5%">
+    <center>
+      <div class="container-fluid center" style="width:90%">
+        <div class="col-sm-6 col-md-4" style="background-color:#FFF">
+       <table frame="left">
+        <tr>
+          <td>
+            <h2 style="font-size:40px; text-align:center;">
+            Bitcoin
+            </h2>
+          </td>
+        </tr>
+        <tr>
+          <td><center>
+            <img src="images/temporarything.jpg" style="height:270px; border-radius:3px; padding-top:3%; padding-bottom:3%;" >   
+          </td></center>
+        </tr>
+        <tr>
+          <td>
+          <b style="font-size:17px">Online </b>
+          <hr style="border-width:1px; border-color:black; opacity:.1; width:270px;">
+          <img src="images/stanfordlogo.png" style=" height:30px; display:inline-block">
+          <p style="font-size:17px;padding-left:80px; text-align:left; display:inline-block">Easy</p>
+          <hr style="border-width:1px; border-color:black; opacity:.1;">
+          <img src="images/nyulogo.png" style=" height:30px; display:inline-block">
+          <p style="font-size:17px; padding-left:30px; text-align:left; display:inline-block">Feeless</p>
+          <hr style="border-width:1px;opacity:.1; border-color:black">
+          <img src="images/dude.png" style="height:30px; display:inline-block">
+          <p style="font-size:17px; text-align:left; display:inline-block; padding-left:85px">Same </p>
+          <hr style="border-width:1px; opacity:.1; border-color:black">
+
+        </tr>
+        </table>
+      </div>
+      <div class="col-sm-6 col-md-4" style="background-color:#FFF">
+       <table frame="left">
+        <tr>
+          <td>
+            <h2 style="font-size:40px; text-align:center;">
+              Coinbase
+            </h2>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="images/temporarything.jpg" style="height:270px; border-radius:3px; padding-top:3%; padding-bottom:3%;" >   
+          </td>
+        </tr>
+        <tr>
+          <td>
+          <b style="font-size:17px">Happy</b>
+          <hr style="border-width:1px; border-color:black; opacity:.1; width:270px;">
+          <img src="images/stanfordlogo.png" style=" height:30px; display:inline-block">
+          <p style="font-size:17px;padding-left:80px; text-align:left; display:inline-block">GOod</p>
+          <hr style="border-width:1px; border-color:black; opacity:.1;">
+          <img src="images/nyulogo.png" style=" height:30px; display:inline-block">
+          <p style="font-size:17px; padding-left:30px; text-align:left; display:inline-block">Helpful</p>
+          <hr style="border-width:1px;opacity:.1; border-color:black">
+          <img src="images/dude.png" style="height:30px; display:inline-block">
+          <p style="font-size:17px; text-align:left; display:inline-block; padding-left:85px">Easy </p>
+          <hr style="border-width:1px; opacity:.1; border-color:black">
+
+        </tr>
+        </table>
+      </div>
+      <div class="col-sm-6 col-md-4" style="background-color:#FFF">
+       <table frame="left">
+        <tr>
+          <td>
+            <h2 style="font-size:40px; text-align:center;">
+            League api
+            </h2>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="images/temporarything.jpg" style="height:270px; border-radius:3px; padding-top:3%; padding-bottom:3%;" >   
+          </td>
+        </tr>
+        <tr>
+          <td>
+          <b style="font-size:17px">Easy</b>
+          <hr style="border-width:1px; border-color:black; opacity:.1; width:270px;">
+          <img src="images/stanfordlogo.png" style=" height:30px; display:inline-block">
+          <p style="font-size:17px;padding-left:80px; text-align:left; display:inline-block">GOod</p>
+          <hr style="border-width:1px; border-color:black; opacity:.1;">
+          <img src="images/nyulogo.png" style=" height:30px; display:inline-block">
+          <p style="font-size:17px; padding-left:30px; text-align:left; display:inline-block">CHecks</p>
+          <hr style="border-width:1px;opacity:.1; border-color:black">
+          <img src="images/dude.png" style="height:30px; display:inline-block">
+          <p style="font-size:17px; text-align:left; display:inline-block; padding-left:85px">ADds new dimension </p>
+          <hr style="border-width:1px; opacity:.1; border-color:black">
+
+        </tr>
+        </table>
+      </div>
+    <div class="row">
+        
+    </div>
+    </center>
+  
+  </section>
+
+  <div id="footer">
+  <a href = "#intro">
+    <img style = "margin-bottom:0%" src="images/upbutton.png" height = "100px"></a>
+    <p style = "padding-top:0%">&#169; Copyright 2016 - Troll thing. All rights reserved.</p>
+    <script>
+    $(document).ready(function() {
+    $('a[href=#intro]').click(function(){
+        $('html, body').animate({scrollTop:0}, 'slow');
+        return false;
+    });
+})
+    </script>
+  </div>
+
+
+</body>
+
+</html>
