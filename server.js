@@ -120,7 +120,9 @@ io.on('connection', function(socket){
   
     });
 
-	socket.on('setUpWager', function(gameIds, gameStartTime, summoner1Name, sideBetOn, userName) {
+
+
+	socket.on('setUpWager', function(gameIds, gameStartTime, summoner1Name, sideBetOn, userEmail) {
 		//check if there is already an existing wager with gameId
 		wage.findOne({gameId : gameIds}, function(err,obj) { 
     	console.log(obj); 
@@ -166,7 +168,7 @@ client({ path:'https://na.api.pvp.net/api/lol/na/v2.2/match/'+gameId+'?api_key=d
 });
 
 }
-
+/*
 setInterval(function(){ 
     wage.find({}, function(err, obj) {
 	for (var i = 0; i < obj.length; i++) {
@@ -177,7 +179,7 @@ setInterval(function(){
 	}
 	});  
 }, 5000);
-
+*/
 
 function distributePrizes(didWin, summoner) {
 //search through the participants and they're bets according to this send them bitcoin or keep theyre bitcoin
