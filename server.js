@@ -105,7 +105,8 @@ io.on('connection', function(socket){
       var responser;
       client({ path: 'http://spectator.na.lol.riotgames.com:80/observer-mode/rest/featured?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb' }).then(function(response) {
       console.log(response.entity);
-      socket.emit('currentGame', response.entity.gameList);         });
+      socket.emit('currentGame', response.entity.gameList);        
+       });
   
     });
 

@@ -43,8 +43,8 @@ transition-duration: .5s;
   });
   </script>
 </head>
-<body id="body2">
 
+<body id="body2">
 <table>
   <tr>
     <td style="vertical-align:top;">
@@ -76,17 +76,20 @@ transition-duration: .5s;
 <td>
   <section>     
     <div class="container-fluid full-page">
-    	<div class="col-md-" style="margin-left:-23%;padding-left:10%; background-color:#222; width:120%; height:100%;">
-        <div id="same">
+    	<div class="" style="margin-left:-40%;padding-left:12%; background-color:#222; width:150%; height:100%;">
+        <div>
     		    <div style="margin-left:-2%; width:70%; text-align:center; display:inline-block;">
-    			    <h4 style="font-size:30px; color:#4B98C6">Course name</h4>
+    			    <h4 style="font-size:30px; color:#4B98C6">Games</h4>
     			    <h4 style="font-size:20px; color:#4B98C6"> Instructor </h4>
     		    </div>
     		    <div style="width:30%; float:right; padding-top:8%;">
        	      <img src="images/temporarything.jpg" style="height:50px; border-radius:50px;">
     		    </div>
+            <br>
+            </div>
             <div id="same"></div>
             <hr>
+
     		</div>
     	</div>
         <script type='text/javascript'>
@@ -117,7 +120,7 @@ transition-duration: .5s;
     </div>
     <br>
     <div>
-      <p style="font-size:20px;">Quiz 1asfasdfasdf </p>
+      <p id="title" style="font-size:20px;"> </p>
     </div>
     <div>
 <p> Epic descrition same same same same same same same same samse smaem amsem amse masme masemdaieudnilauwedhxliauwehdilnxauehnwd oaiwedjcoiajwecdoiaewd saedwaoiemwiecmkeuchmlwkjechmlawkjechmkwjecmkawjeclmawjeclelmeclmwjeehcdawpedckaoeidjoai oawiecejcmjedowjcdoadeia aoweicmwiedmiwe</p>
@@ -143,16 +146,20 @@ transition-duration: .5s;
       socket.on('currentGame', function(responser) {
         response = responser;
         console.log(response);
+
+        for (var i = 0; i < response.length; i++) {
+          var section = new Array(i);
+          section[i] = response[i].gameId;
+          
+          displayHTML += "<a href='#'><div class='same6'><hr><p style='font-size:20px; color:white;'>Game" + i "</p></div></a>";
+
+          console.log(section[i]);
+          $('.same6').css('width', '100%');
+          document.getElementById("same").innerHTML = displayHTML;
+          console.log("asdf");
+          document.getElementById("title").innerHTML = section[i];
+        }
       });
-      for (var i = 0; i < response.length; i++) {
-        displayHTML += "<a href='#'><div class='same6'><hr><p style='font-size:20px; color:white;'>Section 1</p></div></a>";
-        $('.same6').css('width', '100%');
-
-      console.log("asdf");
-      }
-
-      document.getElementById("same").innerHTML = displayHTML;
-
     }
     derp();
     </script>
