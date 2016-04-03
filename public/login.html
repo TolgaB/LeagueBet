@@ -67,19 +67,9 @@
               <input type="password" class="form-control" id="password" placeholder="Enter password">
             </div>
           </form>
-          <button type="submit" onclick="window.location = 'https://sandbox.coinbase.com/oauth/authorize?response_type=code&client_id=65aea19c5416864a0566630d2a599aad7a3c4e6d9b751a8acca9a555d868a22d&redirect_uri=http://localhost:4210/dashboard.html&scope=wallet:accounts:read,wallet:accounts:update,wallet:transactions:read,wallet:transactions:request,wallet:transactions:send,wallet:transactions:transfer,wallet:user:email,wallet:user:read'" class="btn btn-default btn-block">Login</button>
+                    <button type="submit" onclick="window.location = 'https://sandbox.coinbase.com/oauth/authorize?response_type=code&client_id=d0250251d2d2667f9ff9ab64b096c991e0078255a73d6aa223a89eacd511bcca&redirect_uri=http://localhost:4210/dashboard.html&scope=wallet:accounts:read,wallet:accounts:update,wallet:transactions:read,wallet:transactions:request,wallet:transactions:send,wallet:transactions:transfer,wallet:user:email,wallet:user:read'" class="btn btn-default btn-block">Login</button>
 
-          <script>
-          /*
-          curl https://api.coinbase.com/oauth/token \
-          -X POST \
-          -d 'grant_type=authorization_code&code=568738ea0f3624593a01a28b733d5fbd1bf0e80b8b3ddabfd31a03f42c44e1cb&client_id=65aea19c5416864a0566630d2a599aad7a3c4e6d9b751a8acca9a555d868a22d&client_secret=bbf631f77d2a4297c6884f038ea8dc88c930a35fd40e2550d44e524514d7ef2d&redirect_uri=http://localhost:4210/dashboard.html'
-          */
 
-          curl https://api.coinbase.com/v2/user /
-      -H 'Authorization: Bearer 63b5f91865e5735bb3de34bfa55d9fcf6ce4b17dc124ae61e936c8298acbd560'
-
-          </script>
           <p style="padding-top:30px">Don't have an account? <a href="register.html">Register</a></p>
         </div>
       </div>
