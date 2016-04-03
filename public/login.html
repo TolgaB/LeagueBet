@@ -22,12 +22,12 @@
 <nav class=".navbar.navbar-default.navbar-static-top" role="navigation">
     <div class="container-fluid nav" style="background-color:#000">
       <div class="navbar-header">
-         <a href="index.html" style="color:white; text-decoration:none;"><b class="textbig" style="padding-left:40%;">WagePit</b></a>
+         <a href="index.html" style="color:white; text-decoration:none;"><b class="textbig" style="padding-left:40%;">Troll thing</b></a>
       </div>
       <div>
         <ul class="navbar-right transbox" style="padding-right:5%;width:25%">
-          <li class="awedcawced"><a href="register.html" style="font-size:14px;" ><span class="asdfasdf"> Sign Up</a></span></li>
-          <li class="awedcawced"><a href="login.html" style="font-size:14px"><span class="asdfasdf"> Login</span></a></li>
+          <li class="awedcawced"><a href="register.html" style="font-size:14px;" ><span class="asdfasdf">Sign Up</a></span></li>
+          <li class="awedcawced"><a href="login.html" style="font-size:14px"><span class="asdfasdf">Login</span></a></li>
         </ul>
       </div>
     </div>
@@ -63,8 +63,8 @@
               <input type="password" class="form-control" id="password" placeholder="Enter password">
             </div>
           </form>
-          <button type="submit" onclick="troll()" class="btn btn-default btn-block">Login</button>
-          <p style="padding-top:30px">Don't have an account? <a href="register">Register</a></p>
+          <button type="submit" onclick="window.location = 'https://sandbox.coinbase.com/oauth/authorize?response_type=code&client_id=d0250251d2d2667f9ff9ab64b096c991e0078255a73d6aa223a89eacd511bcca&redirect_uri=http://localhost:4201/dashboard.html&scope=wallet:accounts:read,wallet:accounts:update,wallet:transactions:read,wallet:transactions:request,wallet:transactions:send,wallet:transactions:transfer,wallet:user:email,wallet:user:read'" class="btn btn-default btn-block">Login</button>
+          <p style="padding-top:30px">Don't have an account? <a href="register.html">Register</a></p>
         </div>
       </div>
     </div>
@@ -77,5 +77,14 @@
 
 
 </body>
+
+<script>
+function troll() {
+  // var href = ($(this).attr('https://sandbox.coinbase.com/oauth/authorize?response_type=code&client_id=d0250251d2d2667f9ff9ab64b096c991e0078255a73d6aa223a89eacd511bcca&redirect_uri=https://gunnhacks.com&state=same&scope=wallet:accounts:read,wallet:accounts:update,wallet:transactions:read,wallet:transactions:request,wallet:transactions:send,wallet:transactions:transfer,wallet:user:email,wallet:user:read'));
+  console.log(href);
+  window.location = href;
+  return true;
+}
+</script>
 
 </html>
