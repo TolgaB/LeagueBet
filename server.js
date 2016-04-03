@@ -48,6 +48,8 @@ var wageSchema == mongoose.Schema ({
 	summoner1Name: String,
 	ParticipantDictionary: Array,
 }, {collection: 'Wages'})
+
+var wage = mongoose.model('Wage', wageSchema);
 io.on('connection', function(socket){
 
 
@@ -55,7 +57,7 @@ io.on('connection', function(socket){
       socket.on('registerUser', function (userName, password, email) {
         console.log("registerusercalled");
       //Add code to check for same usernames, add to the db database and send response
-    var tempUser = user({name: userName, email : email, password : password})
+    var tempUser = user({name: userName, email : email, password : password});
       console.log(userName, password, email);
 
     var tempId = socket['id'];
@@ -117,15 +119,30 @@ io.on('connection', function(socket){
   
     });
 
-	socket.on('setUpWager', function(gameId, gameStartTime, summoner1Name, sideBetOn) {
-		
-	});    
+	socket.on('setUpWager', function(gameIds, gameStartTime, summoner1Name, sideBetOn) {
+		//check if there is already an existing wager with gameId
+		wage.findOne({gameId : gameIds}, function(err,obj) { 
+    	console.log(obj); 
+		   	 if (obj == null) {
+		   	 	//Its an original
+		   	 	var tempWage = wage({gameId: ,gameStartTime: ,summoner1Name: , sideBetOn: });
+		   	 	tempUser.save(function (err, tempUser) {
+        		if (err) {
+        			console.log("error trying to put the wage into the database");
+        				}
+        	    else {
+        	    	console.log("succesfully pushed the wage to the database");
+        	    }
 
-	function checkForWin() {
-		console.log("testing");
-	}
-
-    
+		   	 }
+		   	 else {
+		   	 	//already been taken add as a participant
+		   	 	Model.findOne({ gameId: gameIds}, function (err, doc){
+		   	 		doc.ParticipantDictionary[doc.ParticipantDictionary.length] = summoner1Name;
+		   	 		doc.ParticipantDictionary[doc.ParticipantDictionary.length + 1] = sideBetOn;
+		   	 	});
+		   	 }
+		});    
         });
 
 function getGames() {
