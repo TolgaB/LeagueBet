@@ -214,7 +214,7 @@ var client = new Client({
 		console.log("you won");
 	server.getAccount('primary', function(err, account) {
 				  account.sendMoney({'to': 'mzp8R2rkUrGcho7jpsposT5jLj5RNmPeix',
-				                     'amount': '0.01',
+				                     'amount': '0.001',
 				                     'currency': 'BTC'}, function(err, tx) {
 				    console.log(tx);
 				  });
@@ -225,7 +225,7 @@ var client = new Client({
 		console.log("you lost");
 		client.getAccount('primary', function(err, account) {
 				  account.sendMoney({'to': 'mhRyJ1abp8pHS43T6SZC7tTuUmmyP2fPBE',
-				                     'amount': '0.01',
+				                     'amount': '0.001',
 				                     'currency': 'BTC'}, function(err, tx) {
 				    console.log(tx);
 				  });
@@ -241,10 +241,6 @@ var client = new Client({
 });
 
 }
-
-
-
-
 function lookForGame(summoner1Name, gameStartTime, obj) {
 	//First search summoner name then get the summonerid, use that to get match id, then get the match data
 	//https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/Kristian1082?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb
@@ -253,12 +249,17 @@ function lookForGame(summoner1Name, gameStartTime, obj) {
     var json = JSON.parse(response.entity);
     var SUMMONER_NAME_NOSPACES = summoner1Name.replace(" ", "");
     SUMMONER_NAME_NOSPACES = SUMMONER_NAME_NOSPACES.toLowerCase().trim();
+    SUMMONER_NAME_NOSPACES = SUMMONER_NAME_NOSPACES.replace(" ", "");
+    SUMMONER_NAME_NOSPACES = SUMMONER_NAME_NOSPACES.replace(" ", "");
+    SUMMONER_NAME_NOSPACES = SUMMONER_NAME_NOSPACES.replace(" ", "");
+    console.log(json);
+    console.log(SUMMONER_NAME_NOSPACES);
     var summonerID = json[SUMMONER_NAME_NOSPACES].id;
-    console.log(summonerID);
     	rest('https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/'+summonerID+'?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb').then(function(response) {
     		var json = JSON.parse(response.entity);
     		var matches = json["matches"];
     		var matchId = matches[0].matchId;
+    		console.log("matchId", matchId);
     		//https://na.api.pvp.net/api/lol/na/v2.2/match/matchid?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb
     		rest('https://na.api.pvp.net/api/lol/na/v2.2/match/'+matchId+'?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb').then(function(response) {
     			var json = JSON.parse(response.entity);
@@ -282,6 +283,7 @@ function lookForGame(summoner1Name, gameStartTime, obj) {
     			}
     		});
     	});
+
 	});
 }
 
