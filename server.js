@@ -74,7 +74,7 @@ io.on('connection', function(socket){
 
     console.log(obj); 
     if (obj == null) {
-
+      console.log('could not find');
       socket.emit('loginUnsuccessfull', "didnotwork");
 
     }

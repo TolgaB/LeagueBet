@@ -37,8 +37,8 @@
 <body style="padding-top:5%">
 
   <script type='text/javascript' src='http://localhost:4210/socket.io/socket.io.js'></script>
-      <script type='text/javascript'>
 
+  <script type='text/javascript'>
     function troll(){
       var socket = io.connect('http://localhost:4210');
       console.log($('#name').val());
@@ -46,14 +46,15 @@
     }
   </script>
 
-
   <section style="">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-4 col-md-offset-2">
           <form id="frmRegister" role="form" style="color:black">
-            <h1 style="color:black"> Register </h1>
-            <div class="form-group">
+            <h1 style="color:black"> 
+              Register
+            </h1>
+            <div style="padding-top:5%">
               <label>League of Legends Username</label>
               <input type="text" class="form-control" placeholder="LOL username" id="name">
             </div>
