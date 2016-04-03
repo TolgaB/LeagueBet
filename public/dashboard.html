@@ -53,7 +53,7 @@ transition-duration: .5s;
   </script>
 </head>
 
-<body id="body2">
+<body id="body2" onload="goaway()">
 <table>
   <tr>
     <td style="vertical-align:top;">
@@ -179,8 +179,8 @@ transition-duration: .5s;
 
     </p>
   </div>
-    <button id="same1" style="float:left" onclick="troll('blue')"> Bet for blue </button>
-    <button id="same2" style="float:right" onclick="troll('red')"> Bet for red</button>
+    <button id="same1" style="float:left" onclick="sendmoney()"> Bet for blue </button>
+    <button id="same2" style="float:right" onclick="sendmoney()"> Bet for red</button>
   <div style='margin-top:0%'>
    
   </div>
@@ -249,6 +249,36 @@ transition-duration: .5s;
       });
     }
     derp();
+    </script>
+    <script>
+    function goaway() {
+      var request = require('request');
+
+request.post(
+    'https://api.coinbase.com/oauth/token',
+    { form: { 'authorization_code': 'authorization_code',
+    'code': '65f431f72480cf18c6ebb16f665beaea73fa34aa6a1b326077a357e81ba26c73', 'client_id': 'd0250251d2d2667f9ff9ab64b096c991e0078255a73d6aa223a89eacd511bcca', 'client_secret': '295008d05c579cbb85bd1dcad8b496707bb08dcbbc623538beff7b1c2e31a57f', 'redirect_uri': '
+http://localhost:4210/dashboard.html' } },
+    function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body)
+        }
+        console.log("o hai der");
+    }
+);
+    }
+
+    function sendmoney() {
+request.post(
+    'https://api.sandbox.coinbase.com/v2/user/65f431f72480cf18c6ebb16f665beaea73fa34aa6a1b326077a357e81ba26c73',
+    function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body)
+        }
+        console.log("o hai der");
+    }
+);
+    }
     </script>
  
 </html>
