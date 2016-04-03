@@ -72,92 +72,165 @@ transition-duration: .5s;
         </div>
       </div>
     </div>
-</td>
+    </td>
+
+
 <td>
   <section>     
     <div class="container-fluid full-page">
-    	<div class="" style="margin-left:-40%;padding-left:12%; background-color:#222; width:150%; height:100%;">
+      <div class="" style="margin-left:-40%;padding-left:12%; background-color:#222; width:150%; height:100%;">
         <div>
-    		    <div style="margin-left:-2%; width:70%; text-align:center; display:inline-block;">
-    			    <h4 style="font-size:30px; color:#4B98C6">Games</h4>
-    			    <h4 style="font-size:20px; color:#4B98C6"> Instructor </h4>
-    		    </div>
-    		    <div style="width:30%; float:right; padding-top:8%;">
-       	      <img src="images/temporarything.jpg" style="height:50px; border-radius:50px;">
-    		    </div>
-            <br>
-            </div>
-            <div id="same"></div>
-            <hr>
+          <div style="margin-left:-2%; width:70%; text-align:center; display:inline-block;">
+            <h4 style="font-size:30px; color:#4B98C6">Games</h4>
+            <h4 style="font-size:20px; color:#4B98C6"> Instructor </h4>
+          </div>
+          <div style="width:30%; float:right; padding-top:8%;">
+            <img src="images/temporarything.jpg" style="height:50px; border-radius:50px;">
+          </div>
+          <br>
+        </div>
 
-    		</div>
-    	</div>
-        <script type='text/javascript'>
+        <div id="same">
+        </div>
+
+        </div>
+      </div>
+    <script type='text/javascript'>
       vvpw = $(window).width();
       vph = $(window).height();
       $('.full-page').height(vph);
     </script>
-    </div>
   </section>
 </td>
-<td class="col-md-6"  style="width:800px; background-color:#F5F5F5">
-    <div class="" style="">
-      <nav class=".navbar .navbar-default .navbar-fixed-top" style="margin-bottom:30px" role="navigation">
-        <div class="container-fluid nav">
-          <div>
-            <h4 style="color:black; font-size:25px; text-align:left;padding-bottom:10%; margin-left:30%">
-              Hello
-            </h4>
-          </div>
-        </div>
-      </nav>
+<td class='col-md-6' style='width:800px; background-color:#F5F5F5'> 
+  <div class='' style=''>
+    <nav class='.navbar .navbar-default .navbar-fixed-top' style='margin-bottom:30px' role='navigation'> <div class='container-fluid nav'>
+      <div>
+        <h4 style='color:black; font-size:25px; text-align:center;padding-bottom:10%; margin-left:0%; width:66%' id="derpherp">  
+        </h4></div>
+      </div>
+    </nav>
+  </div>
+  <div style='margin-top:0%;margin-left:0%; padding-top:0%'>
+  <table id="same" style="background-color:#000; color:#fff; width:100%; text-align:center">
+    <tr>
+      <td class="awoedc">
+        <p id='summoner1'>
+        </p>
+      </td>
+      <td class="awoedc">
+        <p id='summoner6'>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="awoedc">
+        <p id='summoner2'>
+        </p>
+      </td>
+      <td class="awoedc">
+        <p id='summoner7'>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="awoedc">
+        <p id="summoner3">
+        </p>
+      </td>
+       <td class="awoedc">
+        <p id="summoner8">
+        </p>
+      </td>
+    <tr>
+       <td class="awoedc">
+        <p id="summoner4">
+        </p>
+      </td>
+       <td class="awoedc">
+        <p id="summoner9">
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="awoedc">
+        <p id="summoner5">
+        </p>
+      </td>
+      <td class="awoedc">
+        <p id="summoner10">
+        </p>
+      </td>
+    </tr>
+  </table>
+  </div>
+  <br>
+  <div>
+    <p id='title' style='font-size:20px;'>
 
-    </div>
-    <div style="margin-top:10%;margin-left:0%; padding-top:%">
-      <center>
-        <img id="video"src="images/temporarything.jpg">
-      </center>
-    </div>
-    <br>
-    <div>
-      <p id="title" style="font-size:20px;"> </p>
-    </div>
-    <div>
-<p> Epic descrition same same same same same same same same samse smaem amsem amse masme masemdaieudnilauwedhxliauwehdilnxauehnwd oaiwedjcoiajwecdoiaewd saedwaoiemwiecmkeuchmlwkjechmlawkjechmkwjecmkawjeclmawjeclelmeclmwjeehcdawpedckaoeidjoai oawiecejcmjedowjcdoadeia aoweicmwiedmiwe</p>
-    </div>
-    <div style="margin-top:0%">
-      <p style="font-size:20px;float:left"> Previous</p> 
-      <p style="font-size:20px;float:right"> Next</p>
-    </div>
+    </p>
+  </div>
+    <button> bet </button>
 
-</td>
-<td>
-
-</td>
+  <div>
+    <!-- <p id="ased">   -->
+    <!-- </p> -->
+  </div>
+  <div style='margin-top:0%'>
+    <p style='font-size:20px;float:left'>
+      Previous 
+    </p>
+    <p style='font-size:20px;float:right'> 
+      Next
+    </p>
+  </div>
+  </td>
+  </tr>
+</table>
 </body>
 
   <script type='text/javascript' src='http://localhost:4210/socket.io/socket.io.js'></script>
+
   <script type='text/javascript'>
     function derp() {
       var socket = io.connect('http://localhost:4210');;
-      displayHTML = "";
+      displayHTML1 = "";
+      displayHTML2 = "";
       var response;
       socket.emit('getCurrentGames');
       socket.on('currentGame', function(responser) {
         response = responser;
         console.log(response);
+        var same;
 
         for (var i = 0; i < response.length; i++) {
+          console.log(response.length);
+          var troll = new Array(i);
           var section = new Array(i);
-          section[i] = response[i].gameId;
-          displayHTML += "<id = '"+ i +"'><div class='same6'><hr><p style='font-size:20px; color:white;'>Game " + (i+1) + "</p></div></a>";
-          console.log(section[i]);
-          $('.same6').css('width', '100%');
-          
-          document.getElementById("same").innerHTML = displayHTML;
-          console.log("asdf");
-          document.getElementById("title").innerHTML = section[i];
+          displayHTML1 += "<a href = '#' id='"+ section[i] + "'><div class='same6'><hr><p style='font-size:20px; color:white;'>Game " + (i+1) + "</p></div></a>";
+          section.push(i);
+          console.log(section[i] + "same")
+          response[i];
+          // document.getElementById(i).innerHTML = "same";
+          document.getElementById("same").innerHTML = displayHTML1;
+          document.getElementById("derpherp").innerHTML = response[i].gameId;
+
+          document.getElementById("summoner1").innerHTML = response[i].participants[0].summonerName;
+          document.getElementById("summoner2").innerHTML = response[i].participants[1].summonerName;
+          document.getElementById("summoner3").innerHTML = response[i].participants[2].summonerName;
+          document.getElementById("summoner4").innerHTML = response[i].participants[3].summonerName;
+          document.getElementById("summoner5").innerHTML = response[i].participants[4].summonerName;
+          document.getElementById("summoner6").innerHTML = response[i].participants[5].summonerName;
+          document.getElementById("summoner7").innerHTML = response[i].participants[6].summonerName;
+          document.getElementById("summoner8").innerHTML = response[i].participants[7].summonerName;
+          document.getElementById("summoner9").innerHTML = response[i].participants[8].summonerName;
+          document.getElementById("summoner10").innerHTML = response[i].participants[9].summonerName;
+
         }
+
+        // displayHTML2 += ";
+
+
       });
     }
     derp();
