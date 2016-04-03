@@ -79,6 +79,7 @@ io.on('connection', function(socket){
 
     }
     else {
+    console.log("login worked");
     socket.emit('loginSuccesfull', "worked");
 
     }
