@@ -186,6 +186,8 @@ transition-duration: .5s;
   </script>
   <script type='text/javascript'>
   var realGameId;
+  var gameStartTime;
+  var summoner1Name;
   function troll(color){
         if(color == 'blue')
         {
@@ -196,6 +198,8 @@ transition-duration: .5s;
         }
         console.log(realGameId);
         console.log("betteam is " + betteam);
+         var socket = io.connect('http://localhost:4210');;
+         socket.emit('setUpWager', realGameId, gameStartTime, summoner1Name, betteam);
       }
     function derp() {
       var socket = io.connect('http://localhost:4210');;
@@ -218,7 +222,10 @@ transition-duration: .5s;
           // document.getElementById(i).innerHTML = "same";
           document.getElementById("same").innerHTML = displayHTML1;
           document.getElementById("derpherp").innerHTML = response[i].gameId;
+          console.log(response[i]);
           realGameId = response[i].gameId;
+          gameStartTime = response[i].gameStartTime;
+          summoner1Name = response[i].participants[0].summonerName;
           document.getElementById("summoner1").innerHTML = response[i].participants[0].summonerName;
           document.getElementById("summoner2").innerHTML = response[i].participants[1].summonerName;
           document.getElementById("summoner3").innerHTML = response[i].participants[2].summonerName;

@@ -125,8 +125,9 @@ io.on('connection', function(socket){
     	console.log(obj); 
 		   	 if (obj == null) {
 		   	 	//Its an original
-		   	 	//var tempWage = wage({gameId: ,gameStartTime: ,summoner1Name: , sideBetOn: });
-		   	 	tempUser.save(function (err, tempUser) {
+		   	 	var tempArray = [summoner1Name, sideBetOn];
+		   	 	var tempWage = wage({gameId: gameIds,gameStartTime: gameStartTime,summoner1Name: summoner1Name, sideBetOn: sideBetOn, ParticipantDictionary: tempArray});
+		   	 	tempWage.save(function (err, tempUser) {
         		if (err) {
         			console.log("error trying to put the wage into the database");
         				}
@@ -138,7 +139,7 @@ io.on('connection', function(socket){
 		   	 }
 		   	 else {
 		   	 	//already been taken add as a participant
-		   	 	Model.findOne({ gameId: gameIds}, function (err, doc){
+		   	 	wage.findOne({ gameId: gameIds}, function (err, doc){
 		   	 		doc.ParticipantDictionary[doc.ParticipantDictionary.length] = summoner1Name;
 		   	 		doc.ParticipantDictionary[doc.ParticipantDictionary.length + 1] = sideBetOn;
 		   	 	});
@@ -165,30 +166,27 @@ client({ path:'https://na.api.pvp.net/api/lol/na/v2.2/match/'+gameId+'?api_key=d
 
 }
 
-checkWages();
-
-function checkWages() {
-wage.find({}, function(err, obj) {
+setInterval(function(){ 
+    wage.find({}, function(err, obj) {
 	for (var i = 0; i < obj.length; i++) {
-		var summonerName = obj[0].summoner1Name;
-		var gameStartTime = obj[0].gameStartTi
-		var didWin = lookForGame(summonerName, gameStartTime);
-		console.log("The user:", didWin);
-		if (didWin == true) {
-			//distribute money for said bet
-			//means the game ended, see if the user won
-		}
-		if (didwin == false) {
-			//Bye bye money
-		}
-		}
-	});
+		console.log(obj);
+		var summonerName = obj[i].summoner1Name;
+		var gameStartTime = obj[i].gameStartTime;
+		var didWin = lookForGame(summonerName, gameStartTime, obj[i]);
 	}
+	});  
+}, 5000);
+
+
+function distributePrizes(didWin, summoner) {
+
+
+}
 
 
 
 
-function lookForGame(summoner1Name, gameStartTime) {
+function lookForGame(summoner1Name, gameStartTime, obj) {
 	//First search summoner name then get the summonerid, use that to get match id, then get the match data
 	//https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/Kristian1082?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb
 	//https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/summid?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb
@@ -210,8 +208,16 @@ function lookForGame(summoner1Name, gameStartTime) {
     				if (matches[i].player.summonerName == summoner1Name) {
     					var participantID = matches[i].participantId;
     					var matchParticipants = json["participants"];
-    					console.log(matchParticipants[i].stats.winner);
-    					return matchParticipants[i].stats.winner;
+    					var repeat = matchParticipants[i].stats.winner;
+    					console.log(repeat);
+    					var returnValue;
+    					if (repeat == true) {
+    						returnValue = "true";
+    					}
+    					else {
+    						returnValue = "false";
+    					}
+    					return returnValue;
     				}
     			}
     		});
