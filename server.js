@@ -42,8 +42,15 @@ var gameSchema = mongoose.Schema ({
 
 var game = mongoose.model('Game', gameSchema);
 
-
+var wageSchema == mongoose.Schema ({
+	gameId: String,
+	gameStartTime: String,
+	summoner1Name: String,
+	ParticipantDictionary: Array,
+}, {collection: 'Wages'})
 io.on('connection', function(socket){
+
+
   console.log('a user connected');
       socket.on('registerUser', function (userName, password, email) {
         console.log("registerusercalled");
@@ -109,6 +116,14 @@ io.on('connection', function(socket){
        });
   
     });
+
+	socket.on('setUpWager', function(gameId, gameStartTime, summoner1Name, sideBetOn) {
+		
+	});    
+
+	function checkForWin() {
+		console.log("testing");
+	}
 
     
         });
