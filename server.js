@@ -29,6 +29,7 @@ var userSchema = mongoose.Schema ({
   name : String,
   email : String,
   password : String,
+  bitcoinKey: String
      }, {collection: 'User'});
 
 var user = mongoose.model('User', userSchema);
@@ -119,14 +120,15 @@ io.on('connection', function(socket){
   
     });
 
-	socket.on('setUpWager', function(gameIds, gameStartTime, summoner1Name, sideBetOn) {
+	socket.on('setUpWager', function(gameIds, gameStartTime, summoner1Name, sideBetOn, userName) {
 		//check if there is already an existing wager with gameId
 		wage.findOne({gameId : gameIds}, function(err,obj) { 
     	console.log(obj); 
 		   	 if (obj == null) {
 		   	 	//Its an original
-		   	 	//var tempWage = wage({gameId: ,gameStartTime: ,summoner1Name: , sideBetOn: });
-		   	 	tempUser.save(function (err, tempUser) {
+		   	 	var tempArray = [summoner1Name, sideBetOn, userName];
+		   	 	var tempWage = wage({gameId: gameIds,gameStartTime: gameStartTime,summoner1Name: summoner1Name, sideBetOn: sideBetOn, ParticipantDictionary: tempArray});
+		   	 	tempWage.save(function (err, tempUser) {
         		if (err) {
         			console.log("error trying to put the wage into the database");
         				}
@@ -138,7 +140,7 @@ io.on('connection', function(socket){
 		   	 }
 		   	 else {
 		   	 	//already been taken add as a participant
-		   	 	Model.findOne({ gameId: gameIds}, function (err, doc){
+		   	 	wage.findOne({ gameId: gameIds}, function (err, doc){
 		   	 		doc.ParticipantDictionary[doc.ParticipantDictionary.length] = summoner1Name;
 		   	 		doc.ParticipantDictionary[doc.ParticipantDictionary.length + 1] = sideBetOn;
 		   	 	});
@@ -165,31 +167,62 @@ client({ path:'https://na.api.pvp.net/api/lol/na/v2.2/match/'+gameId+'?api_key=d
 
 }
 
-lookForGame('Kristian1082', '1459652712717');
-
-function checkWages() {
-wage.find({}, function(err, obj) {
+setInterval(function(){ 
+    wage.find({}, function(err, obj) {
 	for (var i = 0; i < obj.length; i++) {
-		var summonerName = obj[0].summoner1Name;
-		var gameStartTime = obj[0].gameStartTi
-
-			//means the game ended, see if the user won
-		}
-	});
+		console.log(obj);
+		var summonerName = obj[i].summoner1Name;
+		var gameStartTime = obj[i].gameStartTime;
+		var didWin = lookForGame(summonerName, gameStartTime, obj[i]);
 	}
+	});  
+}, 5000);
+
+
+function distributePrizes(didWin, summoner) {
+//search through the participants and they're bets according to this send them bitcoin or keep theyre bitcoin
+
+}
 
 
 
 
-function lookForGame(summoner1Name, gameStartTime) {
+function lookForGame(summoner1Name, gameStartTime, obj) {
 	//First search summoner name then get the summonerid, use that to get match id, then get the match data
 	//https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/Kristian1082?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb
+	//https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/summid?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb
 	rest('https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/'+summoner1Name+'?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb').then(function(response) {
     var json = JSON.parse(response.entity);
     var SUMMONER_NAME_NOSPACES = summoner1Name.replace(" ", "");
     SUMMONER_NAME_NOSPACES = SUMMONER_NAME_NOSPACES.toLowerCase().trim();
     var summonerID = json[SUMMONER_NAME_NOSPACES].id;
     console.log(summonerID);
+    	rest('https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/'+summonerID+'?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb').then(function(response) {
+    		var json = JSON.parse(response.entity);
+    		var matches = json["matches"];
+    		var matchId = matches[0].matchId;
+    		//https://na.api.pvp.net/api/lol/na/v2.2/match/matchid?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb
+    		rest('https://na.api.pvp.net/api/lol/na/v2.2/match/'+matchId+'?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb').then(function(response) {
+    			var json = JSON.parse(response.entity);
+    			var matches = json["participantIdentities"]
+    			for (var i = 0; i < matches.length; i++) {
+    				if (matches[i].player.summonerName == summoner1Name) {
+    					var participantID = matches[i].participantId;
+    					var matchParticipants = json["participants"];
+    					var repeat = matchParticipants[i].stats.winner;
+    					console.log(repeat);
+    					var returnValue;
+    					if (repeat == true) {
+    						returnValue = "true";
+    					}
+    					else {
+    						returnValue = "false";
+    					}
+    					return returnValue;
+    				}
+    			}
+    		});
+    	});
 	});
 }
 

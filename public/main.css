@@ -14,9 +14,43 @@ table{
   margin-top:-2%;
 }
 table#same{
-  /*border-radius:8px;*/
+  border-radius:8px;
   /*height:20%;*/
 }
+button#same1{
+  font-size:30px;
+  color:white;
+  background-color:#488CD5;
+  border-width:0px;
+  width:30%;
+  border-radius:8px;
+  padding-top:10px;
+  padding-bottom:12px;
+  padding-left:3px;
+  padding-right:3px;
+}
+
+button#same1:hover{
+  background-color:#2D79DB;
+}
+
+button#same2{
+  color:white;
+  font-size:30px;
+  background-color:#C63429;
+  border-width:0px;
+  width:30%;
+  border-radius:8px;
+  padding-top:10px;
+  padding-bottom:12px;
+  padding-left:3px;
+  padding-right:3px;
+}
+
+button#same2:hover{
+  background-color:#B63D00;
+}
+
 td{
   padding-top:2%;
   padding-bottom:2%;
