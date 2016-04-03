@@ -165,24 +165,30 @@ client({ path:'https://na.api.pvp.net/api/lol/na/v2.2/match/'+gameId+'?api_key=d
 
 }
 
-checkWages();
+lookForGame('Kristian1082', '1459652712717');
 
 function checkWages() {
-
 wage.find({}, function(err, obj) {
-	for (int i = 0; i < obj.length; i++) {
+	for (var i = 0; i < obj.length; i++) {
 		var summonerName = obj[0].summoner1Name;
-		var gameStartTime = obj[0].gameStartTime;
-		if (lookForGame() != false) {
+		var gameStartTime = obj[0].gameStartTi
+
 			//means the game ended, see if the user won
 		}
+	});
 	}
-});
-}
+
+
+
 
 function lookForGame(summoner1Name, gameStartTime) {
 	//First search summoner name then get the summonerid, use that to get match id, then get the match data
 	//https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/Kristian1082?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb
+	rest('https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/'+summoner1Name+'?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb').then(function(response) {
+    console.log(summoner1Name);
+    var json = JSON.parse(response.entity);
+    console.log(json.summoner1Name);
+	});
 }
 
 
