@@ -378,10 +378,10 @@ section.full-page {
   
 section#intro {
     font-weight:bold;
-
+    height:600px;
   margin-top:-20px;
   background-color:#000;
-  /*background: url(images/bg.png) no-repeat center center fixed;*/
+  background: url(images/leaguebg.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
