@@ -150,11 +150,10 @@ transition-duration: .5s;
         for (var i = 0; i < response.length; i++) {
           var section = new Array(i);
           section[i] = response[i].gameId;
-          
-          displayHTML += "<a href='#'><div class='same6'><hr><p style='font-size:20px; color:white;'>Game" + i "</p></div></a>";
-
+          displayHTML += "<id = '"+ i +"'><div class='same6'><hr><p style='font-size:20px; color:white;'>Game " + (i+1) + "</p></div></a>";
           console.log(section[i]);
           $('.same6').css('width', '100%');
+          
           document.getElementById("same").innerHTML = displayHTML;
           console.log("asdf");
           document.getElementById("title").innerHTML = section[i];
