@@ -112,52 +112,52 @@ transition-duration: .5s;
     </nav>
   </div>
   <div style='margin-top:0%;margin-left:0%; padding-top:0%'>
-  <table id="same" style="background-color:#000; color:#fff; width:100%; text-align:center">
+  <table id="same" style="background-color:#000; width:100%; text-align:center">
     <tr>
-      <td class="awoedc">
+      <td class="awoedc"style="color:#488CD5">
         <p id='summoner1'>
         </p>
       </td>
-      <td class="awoedc">
+      <td class="awoedc"style="color:#C63429">
         <p id='summoner6'>
         </p>
       </td>
     </tr>
     <tr>
-      <td class="awoedc">
+      <td class="awoedc"style="color:#488CD5">
         <p id='summoner2'>
         </p>
       </td>
-      <td class="awoedc">
+      <td class="awoedc"style="color:#C63429">
         <p id='summoner7'>
         </p>
       </td>
     </tr>
     <tr>
-      <td class="awoedc">
+      <td class="awoedc"style="color:#488CD5">
         <p id="summoner3">
         </p>
       </td>
-       <td class="awoedc">
+       <td class="awoedc"style="color:#C63429">
         <p id="summoner8">
         </p>
       </td>
     <tr>
-       <td class="awoedc">
+       <td class="awoedc"style="color:#488CD5">
         <p id="summoner4">
         </p>
       </td>
-       <td class="awoedc">
+       <td class="awoedc"style="color:#C63429">
         <p id="summoner9">
         </p>
       </td>
     </tr>
     <tr>
-      <td class="awoedc">
+      <td class="awoedc" style="color:#488CD5">
         <p id="summoner5">
         </p>
       </td>
-      <td class="awoedc">
+      <td class="awoedc"style="color:#C63429">
         <p id="summoner10">
         </p>
       </td>
@@ -170,19 +170,10 @@ transition-duration: .5s;
 
     </p>
   </div>
-    <button> bet </button>
-
-  <div>
-    <!-- <p id="ased">   -->
-    <!-- </p> -->
-  </div>
+    <button id="same1" style="float:left" onclick="troll('blue')"> Bet for blue </button>
+    <button id="same2" style="float:right" onclick="troll('red')"> Bet for red</button>
   <div style='margin-top:0%'>
-    <p style='font-size:20px;float:left'>
-      Previous 
-    </p>
-    <p style='font-size:20px;float:right'> 
-      Next
-    </p>
+   
   </div>
   </td>
   </tr>
@@ -190,7 +181,27 @@ transition-duration: .5s;
 </body>
 
   <script type='text/javascript' src='http://localhost:4210/socket.io/socket.io.js'></script>
-
+  <script type="text/javascript">
+  function troll(color){
+      var socket = io.connect('http://localhost:4210');
+      var response;
+      socket.emit('getCurrentGames');
+      socket.on('currentGame', function(responser) {
+        response=responser;
+        var gameId = response[1].gameId;
+        if(color == 'blue')
+        {
+          var betteam = 'blue';
+        }
+        else{
+          var betteam = 'red';
+        }
+        console.log(response);
+        console.log(gameId);
+        console.log("betteam is " + betteam);
+      });
+    }
+  </script>
   <script type='text/javascript'>
     function derp() {
       var socket = io.connect('http://localhost:4210');;
@@ -202,19 +213,17 @@ transition-duration: .5s;
         response = responser;
         console.log(response);
         var same;
-
         for (var i = 0; i < response.length; i++) {
           console.log(response.length);
           var troll = new Array(i);
           var section = new Array(i);
-          displayHTML1 += "<a href = '#' id='"+ section[i] + "'><div class='same6'><hr><p style='font-size:20px; color:white;'>Game " + (i+1) + "</p></div></a>";
+          displayHTML1 += "<a href = '#'onclick='location.reload();' id='"+ section[i] + "'><div class='same6'><hr><p style='font-size:20px; color:white;'>Game " + (i+1) + "</p></div></a>";
           section.push(i);
           console.log(section[i] + "same")
           response[i];
           // document.getElementById(i).innerHTML = "same";
           document.getElementById("same").innerHTML = displayHTML1;
           document.getElementById("derpherp").innerHTML = response[i].gameId;
-
           document.getElementById("summoner1").innerHTML = response[i].participants[0].summonerName;
           document.getElementById("summoner2").innerHTML = response[i].participants[1].summonerName;
           document.getElementById("summoner3").innerHTML = response[i].participants[2].summonerName;
@@ -225,12 +234,7 @@ transition-duration: .5s;
           document.getElementById("summoner8").innerHTML = response[i].participants[7].summonerName;
           document.getElementById("summoner9").innerHTML = response[i].participants[8].summonerName;
           document.getElementById("summoner10").innerHTML = response[i].participants[9].summonerName;
-
         }
-
-        // displayHTML2 += ";
-
-
       });
     }
     derp();
