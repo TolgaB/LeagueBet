@@ -29,6 +29,17 @@ var userSchema = mongoose.Schema ({
      }, {collection: 'User'});
 
 var user = mongoose.model('User', userSchema);
+
+var gameSchema = mongoose.Schema ({
+  gameId: String,
+  gameStartTime: String,
+  gameType: String,
+  Player1Id: String
+}, {collection: 'Games'});
+
+var game = mongoose.model('Game', gameSchema);
+
+
 io.on('connection', function(socket){
   console.log('a user connected');
       socket.on('registerUser', function (userName, password, email) {
@@ -94,10 +105,10 @@ io.on('connection', function(socket){
 
 
 
-pullUpInfoOnSpecificGame(getGames());
+getGames();
 function getGames() {
 client({ path: 'http://spectator.na.lol.riotgames.com:80/observer-mode/rest/featured?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb' }).then(function(response) {
-   console.log(response.entity.gameList);
+   console.log(response.entity.gameList[0]);
     return(response.entity.gameList);  
 });
 }
