@@ -1,11 +1,15 @@
-var io = require('socket.io')(3000);
+var http = require('http');
+
+var app = http.createServer(function(req, res) {
+  console.log('createServer');
+});
+app.listen(4210);
+
+var io = require('socket.io').listen(app);
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://tester:test@ds023118.mlab.com:23118/league');
 var rest = require('rest');
 var rest, mime, client;
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
 rest = require('rest'),
 mime = require('rest/interceptor/mime'); 
 client = rest.wrap(mime);
@@ -27,8 +31,8 @@ var userSchema = mongoose.Schema ({
 var user = mongoose.model('User', userSchema);
 io.on('connection', function(socket){
   console.log('a user connected');
-      socket.on('register', function(userName, Password){
-          socket.on('registerUser', function (userName, password, email) {
+      socket.on('registerUser', function (userName, password, email) {
+        console.log("registerusercalled");
       //Add code to check for same usernames, add to the db database and send response
       var tempUser = user({name: userName, email : email, password : password})
       console.log(userName, password, email);
@@ -84,7 +88,7 @@ io.on('connection', function(socket){
 
 
         });
-});
+
 
 
 function getGames() {
