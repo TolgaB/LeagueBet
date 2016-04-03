@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+
+
   <title>Bawed</title>
   <meta charset="utf-8" />
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
@@ -83,13 +85,8 @@ transition-duration: .5s;
     		    <div style="width:30%; float:right; padding-top:8%;">
        	      <img src="images/temporarything.jpg" style="height:50px; border-radius:50px;">
     		    </div>
-            <a href="#">
-    		      <div class="same6">
-    		        <hr>
-                  <p style="font-size:20px; color:white;">Section 1</p>
-                <hr>
-              </div>
-            </a>
+            <div id="same"></div>
+            <hr>
     		</div>
     	</div>
         <script type='text/javascript'>
@@ -135,5 +132,29 @@ transition-duration: .5s;
 
 </td>
 </body>
+
+  <script type='text/javascript' src='http://localhost:4210/socket.io/socket.io.js'></script>
+  <script type='text/javascript'>
+    function derp() {
+      var socket = io.connect('http://localhost:4210');;
+      displayHTML = "";
+      var response;
+      socket.emit('getCurrentGames');
+      socket.on('currentGame', function(responser) {
+        response = responser;
+        console.log(response);
+      });
+      for (var i = 0; i < response.length; i++) {
+        displayHTML += "<a href='#'><div class='same6'><hr><p style='font-size:20px; color:white;'>Section 1</p></div></a>";
+        $('.same6').css('width', '100%');
+
+      console.log("asdf");
+      }
+
+      document.getElementById("same").innerHTML = displayHTML;
+
+    }
+    derp();
+    </script>
  
 </html>

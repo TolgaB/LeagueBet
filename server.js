@@ -102,47 +102,24 @@ io.on('connection', function(socket){
     });
 
     socket.on('getCurrentGames', function() {
-        socket.emit('currentGames', getGames());
+      var responser;
+      client({ path: 'http://spectator.na.lol.riotgames.com:80/observer-mode/rest/featured?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb' }).then(function(response) {
+      console.log(response.entity);
+      socket.emit('currentGame', response.entity.gameList);         });
+  
     });
+
+    
         });
-
-
-
-
-
 
 function getGames() {
 client({ path: 'http://spectator.na.lol.riotgames.com:80/observer-mode/rest/featured?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb' }).then(function(response) {
-   console.log(response.entity.gameList[0]);
-   //Save the game into the database and check to make sure there are no repeats
-   for (var i = 0; i < response.entity.gameList.length; i ++) {
-      console.log(response.entity.gameList[i].gameId);
-   var tempGame = game({gameId: response.entity.gameList[i].gameId, gameStartTime:response.entity.gameList[i].gameStartTime , gameType: response.entity.gameList[i].gameMode , Player1Id:response.entity.gameList[i].participants[i].summonerName });
-
-   game.findOne({gameId : response.entity.gameList[i].gameId}, function(err,obj) { 
-    if (obj == null) {
-      
-     tempGame.save(function (err, tempUser) {
-
-        if (err) {
-          return console.error(err);
-          console.log("unable to save game data");
   
-        } 
-          console.log("Sent data properly");
-      });
+    return(response.entity.gameList); 
 
-    }
-
-    else {
-    console.log("This game already exists in the database");
-    }
-    });
-}
-
-    return(response.entity.gameList);  
 });
 }
+
 //Might not use these
 function pullUpInfoOnSpecificGame(gameId) {
   
