@@ -45,7 +45,7 @@ io.on('connection', function(socket){
       socket.on('registerUser', function (userName, password, email) {
         console.log("registerusercalled");
       //Add code to check for same usernames, add to the db database and send response
-      var tempUser = user({name: userName, email : email, password : password})
+    var tempUser = user({name: userName, email : email, password : password})
       console.log(userName, password, email);
 
     var tempId = socket['id'];
@@ -106,9 +106,43 @@ io.on('connection', function(socket){
 
 
 getGames();
+
+
+var gameSchema = mongoose.Schema ({
+  gameId: String,
+  gameStartTime: String,
+  gameType: String,
+  Player1Id: String
+}, {collection: 'Games'});
+
 function getGames() {
 client({ path: 'http://spectator.na.lol.riotgames.com:80/observer-mode/rest/featured?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb' }).then(function(response) {
    console.log(response.entity.gameList[0]);
+   //Save the game into the database and check to make sure there are no repeats
+   var tempGame = game({gameId: response.entity.gameList[0].gameId, gameStartTime:response.entity.gameList[0].gameStartTime , gameType: response.entity.gameList[0].gameMode , Player1Id:response.entity.gameList[0].participants[0].summonerName });
+
+   game.findOne({gameId : gameId}, function(err,obj) { 
+    if (obj == null) {
+      
+     tempGame.save(function (err, tempUser) {
+
+        if (err) {
+          return console.error(err);
+          console.log("unable to save game data");
+  
+        } 
+          console.log("Sent data properly");
+          socket.emit('registerSuccesfull', userName);
+      });
+
+    }
+
+    else {
+    console.log("This game already exists in the database");
+    }
+    });
+
+
     return(response.entity.gameList);  
 });
 }
