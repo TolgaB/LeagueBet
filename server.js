@@ -29,6 +29,7 @@ var userSchema = mongoose.Schema ({
   name : String,
   email : String,
   password : String,
+  bitcoinKey: String
      }, {collection: 'User'});
 
 var user = mongoose.model('User', userSchema);
@@ -119,13 +120,13 @@ io.on('connection', function(socket){
   
     });
 
-	socket.on('setUpWager', function(gameIds, gameStartTime, summoner1Name, sideBetOn) {
+	socket.on('setUpWager', function(gameIds, gameStartTime, summoner1Name, sideBetOn, userName) {
 		//check if there is already an existing wager with gameId
 		wage.findOne({gameId : gameIds}, function(err,obj) { 
     	console.log(obj); 
 		   	 if (obj == null) {
 		   	 	//Its an original
-		   	 	var tempArray = [summoner1Name, sideBetOn];
+		   	 	var tempArray = [summoner1Name, sideBetOn, userName];
 		   	 	var tempWage = wage({gameId: gameIds,gameStartTime: gameStartTime,summoner1Name: summoner1Name, sideBetOn: sideBetOn, ParticipantDictionary: tempArray});
 		   	 	tempWage.save(function (err, tempUser) {
         		if (err) {
@@ -179,7 +180,7 @@ setInterval(function(){
 
 
 function distributePrizes(didWin, summoner) {
-
+//search through the participants and they're bets according to this send them bitcoin or keep theyre bitcoin
 
 }
 
