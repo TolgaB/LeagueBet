@@ -185,9 +185,11 @@ function lookForGame(summoner1Name, gameStartTime) {
 	//First search summoner name then get the summonerid, use that to get match id, then get the match data
 	//https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/Kristian1082?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb
 	rest('https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/'+summoner1Name+'?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb').then(function(response) {
-    console.log(summoner1Name);
     var json = JSON.parse(response.entity);
-    console.log(json.summoner1Name);
+    var SUMMONER_NAME_NOSPACES = summoner1Name.replace(" ", "");
+    SUMMONER_NAME_NOSPACES = SUMMONER_NAME_NOSPACES.toLowerCase().trim();
+    var summonerID = json[SUMMONER_NAME_NOSPACES].id;
+    console.log(summonerID);
 	});
 }
 
