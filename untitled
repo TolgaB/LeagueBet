@@ -1,4 +1,0 @@
-
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://tester:tester@ds015710.mlab.com:15710/leaguebet');
-
