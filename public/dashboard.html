@@ -15,9 +15,8 @@
       console.log(store.get('userEmail'));
 </script> -->
   <meta charset="utf-8" />
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" type="text/css" href="dist/sweetalert.css"> -->
     <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"/> -->
   <link rel="stylesheet" type="text/css" href="./main.css">
   <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'> 
@@ -29,6 +28,8 @@
    <script type="text/javascript" src="path.min.js"></script>
    <script type="text/javascript" src="server.js"></script>
    <script type="text/javascript" src="jquery.serialize-object.compiled.js"></script>
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 <style>
 .nav {
 transition-duration: .5s;
@@ -107,9 +108,10 @@ transition-duration: .5s;
           </div>
           <br>
         </div>
-
+ 
         <div id="same">
         </div>
+        </a>
 
         </div>
       </div>
@@ -128,81 +130,84 @@ transition-duration: .5s;
   <th>
     <tr>
       <td id="same1" class="awoedc left"style="color:#488CD5;">
-      <div id="image1" style="float:left; padding-right:1%;">
-      <style>
-      randomimage();
-      </style>
+      <div id="image1" style="float:left;padding-left:5%">
       </div>
-        <p id='summoner1' class="">
-        </p>
+        <a href="#" id="summoner1"style="padding-left:2%;">
+        </a>
       </td>
 
       <td id="same2" class="awoedc right"style="color:#C63429;">
-      <div id="image6" style="float:right; padding-right:1%;">
+      <div id="image6" style="float:right; padding-right:2%;">
       </div>
-        <p id='summoner6' class="">
-        </p>
+        <a href="#" id="summoner6"style="color:#C63429; padding-right:2%;">
+        </a>
       </td>
     </tr>
     <tr>
-      <td id="same1" class="awoedc left"style="color:#488CD5">
-        <div id="image2" style="float:left;padding-right:1%;">
+      <td id="same1" class="awoedc left"style="color:#488CD5;">
+        <div id="image2" style="float:left;padding-left:5%">
         </div>
-        <p id='summoner2'>
-        </p>
+        <a href="#" id="summoner2"style="padding-left:2%;">
+        </a>
       </td>
       <td id="same2" class="awoedc right"style="color:#C63429">
-        <div id="image7" style="float:right; padding-right:1%;">
+        <div id="image7" style="float:right; padding-right:2%;">
         </div>
-        <p id='summoner7'>
-        </p>
+        <a href="#" id="summoner7"style="color:#C63429; padding-right:2%;">
+        </a>
       </td>
     </tr>
     <tr>
       <td id="same1" class="awoedc left"style="color:#488CD5">
-        <div id="image3" style="float:left;padding-right:1%">
+        <div id="image3" style="float:left;padding-left:5%">
         </div>
-        <p id="summoner3">
-        </p>
+        <a href="#" id="summoner3" style="padding-left:2%">
+        </a>
+        <img src="images/leaguepeople/vs.png" style="height:30px; margin-left:200px">
+
       </td>
+
+      <!-- <td> -->
+      <!-- </td> -->
+
        <td id="same2" class="awoedc right"style="color:#C63429">
-       <div id="image8" style="float:right; padding-right:1%">
+       <div id="image8" style="float:right; padding-right:2%">
        </div>
-        <p id="summoner8">
-        </p>
+        <a href="#" id="summoner8"style="padding-right:2%;color:#C63429">
+        </a>
       </td>
     </tr>
     <tr>
        <td id="same1" class="awoedc left"style="color:#488CD5">
-       <div id="image4" style="float:left;padding-right:1%">
+       <div id="image4" style="float:left;padding-left:5%">
        </div>
-        <p id="summoner4">
-        </p>
+        <a href="#" id="summoner4"style="padding-left:2%;">
+        </a>
       </td>
-       <td id="same2" class="awoedc right"style="color:#C63429">
-       <div id="image9" style="float:right;padding-right:1%">
+       <td id="same2" class="awoedc right" style="color:#C63429">
+       <div id="image9" style="float:right;padding-right:2%">
        </div>
-        <p id="summoner9">
-        </p>
+        <a href="#" style="color:#C63429; padding-right:2%"id="summoner9">
+        </a>
       </td>
     </tr>
     <tr>
       <td id="same1" class="awoedc left" style="color:#488CD5">
-      <div id="image5" style="float:left;padding-right:1%">
+      <div id="image5" style="float:left;padding-left:5%">
       </div>
-        <p id="summoner5">
-        </p>
+        <a href="#" id="summoner5" style="padding-left:2%;">
+        </a>
       </td>
       <td id="same2" class="awoedc right"style="color:#C63429; padding-bottom:10px">
-      <div id="image10" style="float:right; padding-right:1%">
+      <div id="image10" style="float:right; padding-right:2%">
       </div>
-        <p id="summoner10">
-        </p>
+      <a href="#" style="padding-right:2%;color:#C63429"id="summoner10"></a>
+
+
       </td>
     </tr>
     </th>
   </table>
-
   <br>
   <div>
     <p id='title' style='font-size:20px;'>
@@ -219,17 +224,17 @@ transition-duration: .5s;
 </table>
 
 <script type='text/javascript'>
-      vvpw = $(window).width();
-      vph = $(window).height();
-      $('.full-page').height(vph);
-    </script>
+  vvpw = $(window).width();
+  vph = $(window).height();
+  $('.full-page').height(vph);
+</script>
 </body>
 
   <script>
     displayHTML = "";
 
     function randomimage(){
-      var x = Math.floor((Math.random() * 127) + 1);      
+      var x = Math.floor((Math.random() * 100) + 1);      
       for(var y=1; y<=10; y++){
         displayHTML="<img src='images/leaguepeople/" + (x+y) + ".png'></img>";
         document.getElementById("image" + y).innerHTML = displayHTML;
@@ -275,10 +280,8 @@ transition-duration: .5s;
         displayHTML1 += "<a href = '#'onclick='location.reload();' id='"+ section[i] + "'><div class='same6'><hr><p style='font-size:20px; color:white;'>Game " + (i+1) + "</p></div></a>";
         section.push(i);
         console.log(section[i] + "same")
-        var same1 = 
-        console.log(same1);
-        document.getElementById("asdfasdfasdf").innerHTML = $('#name').val();
-        document.getElementById("emailasdf").innerHTML = $('#email').val();
+        document.getElementById("asdfasdfasdf").innerHTML = "troll";
+        document.getElementById("emailasdf").innerHTML = "troll@troll.com";
         document.getElementById("same").innerHTML = displayHTML1;
         document.getElementById("derpherp").innerHTML = response[i].gameId;
         console.log(response[i]);
@@ -296,6 +299,35 @@ transition-duration: .5s;
         document.getElementById("summoner9").innerHTML = response[i].participants[8].summonerName;
         document.getElementById("summoner10").innerHTML = response[i].participants[9].summonerName;
 
+        var link = 'http://na.op.gg/summoner/userName=' + response[i].participants[0].summonerName;
+        document.getElementById('summoner1').href = link;
+
+        var link = 'http://na.op.gg/summoner/userName=' + response[i].participants[1].summonerName;
+        document.getElementById('summoner2').href = link;
+
+        var link = 'http://na.op.gg/summoner/userName=' + response[i].participants[2].summonerName;
+        document.getElementById('summoner3').href = link;
+
+        var link = 'http://na.op.gg/summoner/userName=' + response[i].participants[3].summonerName;
+        document.getElementById('summoner4').href = link;
+
+        var link = 'http://na.op.gg/summoner/userName=' + response[i].participants[4].summonerName;
+        document.getElementById('summoner5').href = link;
+
+        var link = 'http://na.op.gg/summoner/userName=' + response[i].participants[5].summonerName;
+        document.getElementById('summoner6').href = link;
+        
+        var link = 'http://na.op.gg/summoner/userName=' + response[i].participants[6].summonerName;
+        document.getElementById('summoner7').href = link;        
+        
+        var link = 'http://na.op.gg/summoner/userName=' + response[i].participants[7].summonerName;
+        document.getElementById('summoner8').href = link;
+
+        var link = 'http://na.op.gg/summoner/userName=' + response[i].participants[8].summonerName;
+        document.getElementById('summoner9').href = link;
+
+        var link = 'http://na.op.gg/summoner/userName=' + response[i].participants[9].summonerName;
+        document.getElementById('summoner10').href = link;
         // var same;
         // if(response[i].participants[3].summonerName==84){
         //   image.src="images/leaguepeople/84.png";
