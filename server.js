@@ -1,11 +1,16 @@
-var http = require('http');
+var express = require('express');
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-var app = http.createServer(function(req, res) {
-  console.log('createServer');
+server.listen(4210);
+
+app.get('/', function (req, res) {
+  res.sendfile(__dirname + '/index.html');
 });
-app.listen(4210);
 
-var io = require('socket.io').listen(app);
+app.use(express.static('public'));
+
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://tester:test@ds023118.mlab.com:23118/league');
 var rest = require('rest');
