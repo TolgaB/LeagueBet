@@ -5,7 +5,7 @@
 
 
   <title>Bawed</title>
-  <script>
+<!--   <script>
   var store;
       function load_data() {
         // load persistent store after the DOM has loaded
@@ -13,7 +13,7 @@
       }
 
       console.log(store.get('userEmail'));
-</script>
+</script> -->
   <meta charset="utf-8" />
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -53,7 +53,7 @@ transition-duration: .5s;
   </script>
 </head>
 
-<body id="body2" onload="goaway()">
+<body id="body2">
 <table>
   <tr>
     <td style="vertical-align:top;">
@@ -61,22 +61,31 @@ transition-duration: .5s;
         <div class="col-md-1" style="margin-left:-30%;background-color:#333; height:100%; width:100%;">
         <div style="padding-top:20%; padding-left:15%">
           <div style="padding-top:20%;padding-bottom:20%">
-            <img src="images/temporarything.jpg" style="height:50px; border-radius:50px;">
+            <a href="https://coinbase.com">
+              <img src="images/coinbase.png" style="height:50px; border-radius:50px;">
+            </a>
           </div>
           <div style="padding-bottom:20%">
-            <img src="images/temporarything.jpg" style="height:50px; border-radius:50px;">
+            <a href="https://www.bitcoin.com">
+              <img src="images/bitcoin.png" style="height:50px; border-radius:50px;">
+            </a>
           </div>
           <div style="padding-bottom:20%">
-            <img src="images/temporarything.jpg" style="height:50px; border-radius:50px;">
+            <a href="http://420.moe">
+              <img src="images/music.png" onclick="awedca()" style="height:50px; border-radius:50px;">
+            </a>
           </div>
           <div style="padding-bottom:630%">
-            <img src="images/temporarything.jpg" style="height:50px; border-radius:50px;">
+            <a href="https://leagueoflegends.com">
+              <img src="images/league.png" style="height:50px; border-radius:50px;">
+            </a>
           </div>
           <div style="padding-bottom:20%">
-            <img src="images/temporarything.jpg" style="height:50px; border-radius:50px;">
+          <a href="http://420.moe">
+            <img src="images/settings.png" style="height:50px; border-radius:50px;">
           </div>
           <div style="padding-bottom:20%">
-            <img src="images/temporarything.jpg" style="height:50px; border-radius:50px;">
+            <img src="images/logout.png" style="height:50px; width:50px">
           </div>
         </div>
       </div>
@@ -90,11 +99,11 @@ transition-duration: .5s;
       <div class="" style="margin-left:-40%;padding-left:12%; background-color:#222; width:150%; height:100%;">
         <div>
           <div style="margin-left:-2%; width:70%; text-align:center; display:inline-block;">
-            <h4 style="font-size:30px; color:#4B98C6">Games</h4>
-            <h4 style="font-size:20px; color:#4B98C6"> Instructor </h4>
+            <h4 style="font-size:30px; color:#4B98C6" id="asdfasdfasdf">Games</h4>
+            <h4 style="font-size:20px; color:#4B98C6" id="emailasdf"> Instructor </h4>
           </div>
           <div style="width:30%; float:right; padding-top:8%;">
-            <img src="images/temporarything.jpg" style="height:50px; border-radius:50px;">
+            <img src="images/dude.png" style="height:55px; border-radius:50px;">
           </div>
           <br>
         </div>
@@ -104,11 +113,6 @@ transition-duration: .5s;
 
         </div>
       </div>
-    <script type='text/javascript'>
-      vvpw = $(window).width();
-      vph = $(window).height();
-      $('.full-page').height(vph);
-    </script>
   </section>
 </td>
 <td class='col-md-6' style='width:800px; background-color:#F5F5F5'> 
@@ -120,75 +124,128 @@ transition-duration: .5s;
       </div>
     </nav>
   </div>
-  <div style='margin-top:0%;margin-left:0%; padding-top:0%'>
-  <table id="same" style="background-color:#000; width:100%; text-align:center">
+  <table id="same" style="">
+  <th>
     <tr>
-      <td class="awoedc"style="color:#488CD5">
-        <p id='summoner1'>
+      <td id="same1" class="awoedc left"style="color:#488CD5;">
+      <div id="image1" style="float:left; padding-right:1%;">
+      <style>
+      randomimage();
+      </style>
+      </div>
+        <p id='summoner1' class="">
         </p>
       </td>
-      <td class="awoedc"style="color:#C63429">
-        <p id='summoner6'>
+
+      <td id="same2" class="awoedc right"style="color:#C63429;">
+      <div id="image6" style="float:right; padding-right:1%;">
+      </div>
+        <p id='summoner6' class="">
         </p>
       </td>
     </tr>
     <tr>
-      <td class="awoedc"style="color:#488CD5">
+      <td id="same1" class="awoedc left"style="color:#488CD5">
+        <div id="image2" style="float:left;padding-right:1%;">
+        </div>
         <p id='summoner2'>
         </p>
       </td>
-      <td class="awoedc"style="color:#C63429">
+      <td id="same2" class="awoedc right"style="color:#C63429">
+        <div id="image7" style="float:left; padding-right:1%;">
+        </div>
         <p id='summoner7'>
         </p>
       </td>
     </tr>
     <tr>
-      <td class="awoedc"style="color:#488CD5">
+      <td id="same1" class="awoedc left"style="color:#488CD5">
+        <div id="image3" style="float:left;padding-right:1%">
+        </div>
         <p id="summoner3">
         </p>
       </td>
-       <td class="awoedc"style="color:#C63429">
+       <td id="same2" class="awoedc right"style="color:#C63429">
+       <div id="image8" style="float:right; padding-right:1%">
+       </div>
         <p id="summoner8">
         </p>
       </td>
+    </tr>
     <tr>
-       <td class="awoedc"style="color:#488CD5">
+       <td id="same1" class="awoedc left"style="color:#488CD5">
+       <div id="image4" style="float:right;padding-right:1%">
+       </div>
         <p id="summoner4">
         </p>
       </td>
-       <td class="awoedc"style="color:#C63429">
+       <td id="same2" class="awoedc right"style="color:#C63429">
+       <div id="image9" style="float:right;padding-right:1%">
+       </div>
         <p id="summoner9">
         </p>
       </td>
     </tr>
     <tr>
-      <td class="awoedc" style="color:#488CD5">
+      <td id="same1" class="awoedc left" style="color:#488CD5">
+      <div id="image5" style="float:left;padding-right:1%">
+      </div>
         <p id="summoner5">
         </p>
       </td>
-      <td class="awoedc"style="color:#C63429">
+      <td id="same2" class="awoedc right"style="color:#C63429; padding-bottom:10px">
+      <div id="image10" style="float:right; padding-right:1%">
+      </div>
         <p id="summoner10">
         </p>
       </td>
     </tr>
+    </th>
   </table>
-  </div>
+
   <br>
   <div>
     <p id='title' style='font-size:20px;'>
 
     </p>
   </div>
-    <button id="same1" style="float:left" onclick="sendmoney()"> Bet for blue </button>
-    <button id="same2" style="float:right" onclick="sendmoney()"> Bet for red</button>
+    <button id="same1" style="float:left" onclick="troll('blue')"> Bet for blue </button>
+    <button id="same2" style="float:right" onclick="troll('red')"> Bet for red</button>
   <div style='margin-top:0%'>
    
   </div>
   </td>
   </tr>
 </table>
+
+<script type='text/javascript'>
+      vvpw = $(window).width();
+      vph = $(window).height();
+      $('.full-page').height(vph);
+    </script>
 </body>
 
+<script>
+    displayHTML = "";
+
+    function randomimage(){
+        if(x != 49 || 65 || 66 || 70 || 71){
+          var x = Math.floor((Math.random() * 30) + 1);
+          // x=2;
+            displayHTML = "<img src='images/leaguepeople/"+x+".png'></img>";
+            document.getElementById("image").innerHTML = displayHTML;     
+            for(var y=0; y<=9; y++){
+            displayHTML = "<img src='images/leaguepeople/"+y+".png'></img>";
+            console.log("fuck this shit" + "image" + y);
+            document.getElementById("image"+ y ).innerHTML = " same";
+          }
+        }
+        else{
+          randomimage();
+        }
+      }
+    randomimage();
+  </script>
   <script type='text/javascript' src='http://localhost:4210/socket.io/socket.io.js'></script>
   <script type="text/javascript">
   
@@ -209,76 +266,60 @@ transition-duration: .5s;
         console.log("betteam is " + betteam);
          var socket = io.connect('http://localhost:4210');;
          socket.emit('setUpWager', realGameId, gameStartTime, summoner1Name, betteam);
-      }
-    function derp() {
-      var socket = io.connect('http://localhost:4210');;
-      displayHTML1 = "";
-      displayHTML2 = "";
-      var response;
-      socket.emit('getCurrentGames');
-      socket.on('currentGame', function(responser) {
-        response = responser;
-        console.log(response);
-        var same;
-        for (var i = 0; i < response.length; i++) {
-          console.log(response.length);
-          var troll = new Array(i);
-          var section = new Array(i);
-          displayHTML1 += "<a href = '#'onclick='location.reload();' id='"+ section[i] + "'><div class='same6'><hr><p style='font-size:20px; color:white;'>Game " + (i+1) + "</p></div></a>";
-          section.push(i);
-          console.log(section[i] + "same")
-          response[i];
-          // document.getElementById(i).innerHTML = "same";
-          document.getElementById("same").innerHTML = displayHTML1;
-          document.getElementById("derpherp").innerHTML = response[i].gameId;
-          console.log(response[i]);
-          realGameId = response[i].gameId;
-          gameStartTime = response[i].gameStartTime;
-          summoner1Name = response[i].participants[0].summonerName;
-          document.getElementById("summoner1").innerHTML = response[i].participants[0].summonerName;
-          document.getElementById("summoner2").innerHTML = response[i].participants[1].summonerName;
-          document.getElementById("summoner3").innerHTML = response[i].participants[2].summonerName;
-          document.getElementById("summoner4").innerHTML = response[i].participants[3].summonerName;
-          document.getElementById("summoner5").innerHTML = response[i].participants[4].summonerName;
-          document.getElementById("summoner6").innerHTML = response[i].participants[5].summonerName;
-          document.getElementById("summoner7").innerHTML = response[i].participants[6].summonerName;
-          document.getElementById("summoner8").innerHTML = response[i].participants[7].summonerName;
-          document.getElementById("summoner9").innerHTML = response[i].participants[8].summonerName;
-          document.getElementById("summoner10").innerHTML = response[i].participants[9].summonerName;
+  }
+
+
+  function derp() {
+    var socket = io.connect('http://localhost:4210');;
+    displayHTML1 = "";
+    displayHTML2 = "";
+    var response;
+    socket.emit('getCurrentGames');
+    socket.on('currentGame', function(responser) {
+      response = responser;
+      console.log(response);
+      var same;
+      for (var i = 0; i < response.length; i++) {
+        console.log(response.length);
+        var troll = new Array(i);
+        var section = new Array(i);
+        displayHTML1 += "<a href = '#'onclick='location.reload();' id='"+ section[i] + "'><div class='same6'><hr><p style='font-size:20px; color:white;'>Game " + (i+1) + "</p></div></a>";
+        section.push(i);
+        console.log(section[i] + "same")
+        var same1 = 
+        console.log(same1);
+        document.getElementById("asdfasdfasdf").innerHTML = $('#name').val();
+        document.getElementById("emailasdf").innerHTML = $('#email').val();
+        document.getElementById("same").innerHTML = displayHTML1;
+        document.getElementById("derpherp").innerHTML = response[i].gameId;
+        console.log(response[i]);
+        realGameId = response[i].gameId;
+        gameStartTime = response[i].gameStartTime;
+        summoner1Name = response[i].participants[0].summonerName;
+        document.getElementById("summoner1").innerHTML = response[i].participants[0].summonerName;
+        document.getElementById("summoner2").innerHTML = response[i].participants[1].summonerName;
+        document.getElementById("summoner3").innerHTML = response[i].participants[2].summonerName;
+        document.getElementById("summoner4").innerHTML = response[i].participants[3].summonerName;
+        document.getElementById("summoner5").innerHTML = response[i].participants[4].summonerName;
+        document.getElementById("summoner6").innerHTML = response[i].participants[5].summonerName;
+        document.getElementById("summoner7").innerHTML = response[i].participants[6].summonerName;
+        document.getElementById("summoner8").innerHTML = response[i].participants[7].summonerName;
+        document.getElementById("summoner9").innerHTML = response[i].participants[8].summonerName;
+        document.getElementById("summoner10").innerHTML = response[i].participants[9].summonerName;
+
+        // var same;
+        // if(response[i].participants[3].summonerName==84){
+        //   image.src="images/leaguepeople/84.png";
+        // }
+        // else if(response[i].participants[x].summonerName==84){
+
+        // }
+        document.getElementById("asdfasdfasdf").innerHTML = same;
+
         }
       });
     }
     derp();
-    </script>
-    <script>
-    function goaway() {
-      var request = require('request');
-
-request.post(
-    'https://api.coinbase.com/oauth/token',
-    { form: { 'authorization_code': 'authorization_code',
-    'code': '65f431f72480cf18c6ebb16f665beaea73fa34aa6a1b326077a357e81ba26c73', 'client_id': 'd0250251d2d2667f9ff9ab64b096c991e0078255a73d6aa223a89eacd511bcca', 'client_secret': '295008d05c579cbb85bd1dcad8b496707bb08dcbbc623538beff7b1c2e31a57f', 'redirect_uri': '
-http://localhost:4210/dashboard.html' } },
-    function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body)
-        }
-        console.log("o hai der");
-    }
-);
-    }
-
-    function sendmoney() {
-request.post(
-    'https://api.sandbox.coinbase.com/v2/user/65f431f72480cf18c6ebb16f665beaea73fa34aa6a1b326077a357e81ba26c73',
-    function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body)
-        }
-        console.log("o hai der");
-    }
-);
-    }
     </script>
  
 </html>
