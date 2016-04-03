@@ -10,10 +10,23 @@
   padding: 0px;
   overflow-x:hidden;
 }
+table{
+  margin-top:-2%;
+}
+table#same{
+  /*border-radius:8px;*/
+  /*height:20%;*/
+}
+td{
+  padding-top:2%;
+  padding-bottom:2%;
+}
 .same6{
   width:100%;
 }
-
+.awoedc{
+  font-size:20px;
+}
 .white{
   color:#FFF;
 }
