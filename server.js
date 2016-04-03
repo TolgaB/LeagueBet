@@ -42,13 +42,22 @@ var gameSchema = mongoose.Schema ({
 
 var game = mongoose.model('Game', gameSchema);
 
+var wageSchema = mongoose.Schema ({
+	gameId: String,
+	gameStartTime: String,
+	summoner1Name: String,
+	ParticipantDictionary: Array,
+}, {collection: 'Wages'});
 
+var wage = mongoose.model('Wage', wageSchema);
 io.on('connection', function(socket){
+
+
   console.log('a user connected');
       socket.on('registerUser', function (userName, password, email) {
         console.log("registerusercalled");
       //Add code to check for same usernames, add to the db database and send response
-    var tempUser = user({name: userName, email : email, password : password})
+    var tempUser = user({name: userName, email : email, password : password});
       console.log(userName, password, email);
 
     var tempId = socket['id'];
@@ -110,8 +119,33 @@ io.on('connection', function(socket){
   
     });
 
-    
+	socket.on('setUpWager', function(gameIds, gameStartTime, summoner1Name, sideBetOn) {
+		//check if there is already an existing wager with gameId
+		wage.findOne({gameId : gameIds}, function(err,obj) { 
+    	console.log(obj); 
+		   	 if (obj == null) {
+		   	 	//Its an original
+		   	 	//var tempWage = wage({gameId: ,gameStartTime: ,summoner1Name: , sideBetOn: });
+		   	 	tempUser.save(function (err, tempUser) {
+        		if (err) {
+        			console.log("error trying to put the wage into the database");
+        				}
+        	    else {
+        	    	console.log("succesfully pushed the wage to the database");
+        	    }
+
+		   	 });
+		   	 }
+		   	 else {
+		   	 	//already been taken add as a participant
+		   	 	Model.findOne({ gameId: gameIds}, function (err, doc){
+		   	 		doc.ParticipantDictionary[doc.ParticipantDictionary.length] = summoner1Name;
+		   	 		doc.ParticipantDictionary[doc.ParticipantDictionary.length + 1] = sideBetOn;
+		   	 	});
+		   	 }
+		});    
         });
+});
 
 function getGames() {
 client({ path: 'http://spectator.na.lol.riotgames.com:80/observer-mode/rest/featured?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb' }).then(function(response) {
@@ -130,7 +164,26 @@ client({ path:'https://na.api.pvp.net/api/lol/na/v2.2/match/'+gameId+'?api_key=d
 });
 
 }
-//To tell if the league of legends game has ended
-function didGameEnd(gameId) {
 
+checkWages();
+
+function checkWages() {
+
+wage.find({}, function(err, obj) {
+	for (int i = 0; i < obj.length; i++) {
+		var summonerName = obj[0].summoner1Name;
+		var gameStartTime = obj[0].gameStartTime;
+		if (lookForGame() != false) {
+			//means the game ended, see if the user won
+		}
+	}
+});
 }
+
+function lookForGame(summoner1Name, gameStartTime) {
+	//First search summoner name then get the summonerid, use that to get match id, then get the match data
+	//https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/Kristian1082?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb
+}
+
+
+
