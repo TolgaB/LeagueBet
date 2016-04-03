@@ -152,7 +152,7 @@ transition-duration: .5s;
         </p>
       </td>
       <td id="same2" class="awoedc right"style="color:#C63429">
-        <div id="image7" style="float:left; padding-right:1%;">
+        <div id="image7" style="float:right; padding-right:1%;">
         </div>
         <p id='summoner7'>
         </p>
@@ -174,7 +174,7 @@ transition-duration: .5s;
     </tr>
     <tr>
        <td id="same1" class="awoedc left"style="color:#488CD5">
-       <div id="image4" style="float:right;padding-right:1%">
+       <div id="image4" style="float:left;padding-right:1%">
        </div>
         <p id="summoner4">
         </p>
@@ -225,31 +225,20 @@ transition-duration: .5s;
     </script>
 </body>
 
-<script>
+  <script>
     displayHTML = "";
 
     function randomimage(){
-        if(x != 49 || 65 || 66 || 70 || 71){
-          var x = Math.floor((Math.random() * 30) + 1);
-          // x=2;
-            displayHTML = "<img src='images/leaguepeople/"+x+".png'></img>";
-            document.getElementById("image").innerHTML = displayHTML;     
-            for(var y=0; y<=9; y++){
-            displayHTML = "<img src='images/leaguepeople/"+y+".png'></img>";
-            console.log("fuck this shit" + "image" + y);
-            document.getElementById("image"+ y ).innerHTML = " same";
-          }
-        }
-        else{
-          randomimage();
-        }
+      var x = Math.floor((Math.random() * 127) + 1);      
+      for(var y=1; y<=10; y++){
+        displayHTML="<img src='images/leaguepeople/" + (x+y) + ".png'></img>";
+        document.getElementById("image" + y).innerHTML = displayHTML;
       }
+    }
     randomimage();
   </script>
   <script type='text/javascript' src='http://localhost:4210/socket.io/socket.io.js'></script>
-  <script type="text/javascript">
-  
-  </script>
+
   <script type='text/javascript'>
   var realGameId;
   var gameStartTime;
