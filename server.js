@@ -28,7 +28,6 @@ db.on('open', function() {
   getGames();
 });
 
-
 var userSchema = mongoose.Schema ({
 
   name : String,
@@ -57,8 +56,6 @@ var wageSchema = mongoose.Schema ({
 
 var wage = mongoose.model('Wage', wageSchema);
 io.on('connection', function(socket){
-
-
   console.log('a user connected');
       socket.on('registerUser', function (userName, password, email) {
         console.log("registerusercalled");
@@ -125,6 +122,12 @@ io.on('connection', function(socket){
   
     });
 
+    socket.on('addBitcoinKey', function(bitcoinKeyr, userEmails) {
+    	user.findOne({userEmail: userEmails}, function (err, doc) {
+    		docs.bitcoinKey = bitcoinKeyr;
+    	});
+    });
+
 
 
 	socket.on('setUpWager', function(gameIds, gameStartTime, summoner1Name, sideBetOn, userEmail) {
@@ -133,7 +136,8 @@ io.on('connection', function(socket){
     	console.log(obj); 
 		   	 if (obj == null) {
 		   	 	//Its an original
-		   	 	var tempArray = [summoner1Name, sideBetOn, userName];
+
+		   	 	var tempArray = [summoner1Name, sideBetOn, userEmail];
 		   	 	var tempWage = wage({gameId: gameIds,gameStartTime: gameStartTime,summoner1Name: summoner1Name, sideBetOn: sideBetOn, ParticipantDictionary: tempArray});
 		   	 	tempWage.save(function (err, tempUser) {
         		if (err) {
@@ -173,7 +177,7 @@ client({ path:'https://na.api.pvp.net/api/lol/na/v2.2/match/'+gameId+'?api_key=d
 });
 
 }
-/*
+
 setInterval(function(){ 
     wage.find({}, function(err, obj) {
 	for (var i = 0; i < obj.length; i++) {
@@ -184,10 +188,57 @@ setInterval(function(){
 	}
 	});  
 }, 5000);
-*/
+
 
 function distributePrizes(didWin, summoner) {
 //search through the participants and they're bets according to this send them bitcoin or keep theyre bitcoin
+var Server = require('coinbase').Client;
+
+var server = new Server({
+  'apiKey': '5uVjwIev2ASxTszr',
+  'apiSecret': 'INl7fOXNI5k9Eqld3iPXCxS4oVXzUf6x',
+  'baseApiUri': 'https://api.sandbox.coinbase.com/v2/',
+  'tokenUri': 'https://api.sandbox.coinbase.com/oauth/token'
+});
+
+
+var Client = require('coinbase').Client;
+
+var client = new Client({
+  'apiKey': 'Hc0mYX0KDEaGusU0',
+  'apiSecret': 'GCG1eza4ZhfTfEZ88Zkq4G2fUc9uSArZ',
+  'baseApiUri': 'https://api.sandbox.coinbase.com/v2/',
+  'tokenUri': 'https://api.sandbox.coinbase.com/oauth/token'
+});
+	if (didWin == "true") {
+		console.log("you won");
+	server.getAccount('primary', function(err, account) {
+				  account.sendMoney({'to': 'mzp8R2rkUrGcho7jpsposT5jLj5RNmPeix',
+				                     'amount': '0.01',
+				                     'currency': 'BTC'}, function(err, tx) {
+				    console.log(tx);
+				  });
+				});
+				
+	}
+	else if (didWin == "false") {
+		console.log("you lost");
+		client.getAccount('primary', function(err, account) {
+				  account.sendMoney({'to': 'mhRyJ1abp8pHS43T6SZC7tTuUmmyP2fPBE',
+				                     'amount': '0.01',
+				                     'currency': 'BTC'}, function(err, tx) {
+				    console.log(tx);
+				  });
+				});
+	}
+	wage.remove({ summoner1Name: summoner }, function(err) {
+    if (!err) {
+         
+    }
+    else {
+           
+    }
+});
 
 }
 
@@ -225,6 +276,7 @@ function lookForGame(summoner1Name, gameStartTime, obj) {
     					else {
     						returnValue = "false";
     					}
+    					distributePrizes(returnValue, summoner1Name);
     					return returnValue;
     				}
     			}
