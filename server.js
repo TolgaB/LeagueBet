@@ -15,9 +15,12 @@ mime = require('rest/interceptor/mime');
 client = rest.wrap(mime);
 
 var db = mongoose.connection;
+
 db.on('error', console.error.bind(console, 'connection error:'));
 db.on('open', function() {
   console.log("connected to mongodb");
+
+  getGames();
 });
 
 
@@ -105,23 +108,18 @@ io.on('connection', function(socket){
 
 
 
-getGames();
 
 
-var gameSchema = mongoose.Schema ({
-  gameId: String,
-  gameStartTime: String,
-  gameType: String,
-  Player1Id: String
-}, {collection: 'Games'});
 
 function getGames() {
 client({ path: 'http://spectator.na.lol.riotgames.com:80/observer-mode/rest/featured?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb' }).then(function(response) {
    console.log(response.entity.gameList[0]);
    //Save the game into the database and check to make sure there are no repeats
-   var tempGame = game({gameId: response.entity.gameList[0].gameId, gameStartTime:response.entity.gameList[0].gameStartTime , gameType: response.entity.gameList[0].gameMode , Player1Id:response.entity.gameList[0].participants[0].summonerName });
+   for (var i = 0; i < response.entity.gameList.length; i ++) {
+      console.log(response.entity.gameList[i].gameId);
+   var tempGame = game({gameId: response.entity.gameList[i].gameId, gameStartTime:response.entity.gameList[i].gameStartTime , gameType: response.entity.gameList[i].gameMode , Player1Id:response.entity.gameList[i].participants[i].summonerName });
 
-   game.findOne({gameId : gameId}, function(err,obj) { 
+   game.findOne({gameId : response.entity.gameList[i].gameId}, function(err,obj) { 
     if (obj == null) {
       
      tempGame.save(function (err, tempUser) {
@@ -132,7 +130,6 @@ client({ path: 'http://spectator.na.lol.riotgames.com:80/observer-mode/rest/feat
   
         } 
           console.log("Sent data properly");
-          socket.emit('registerSuccesfull', userName);
       });
 
     }
@@ -141,7 +138,7 @@ client({ path: 'http://spectator.na.lol.riotgames.com:80/observer-mode/rest/feat
     console.log("This game already exists in the database");
     }
     });
-
+}
 
     return(response.entity.gameList);  
 });
