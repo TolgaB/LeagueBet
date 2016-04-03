@@ -182,13 +182,11 @@ transition-duration: .5s;
 
   <script type='text/javascript' src='http://localhost:4210/socket.io/socket.io.js'></script>
   <script type="text/javascript">
+  
+  </script>
+  <script type='text/javascript'>
+  var realGameId;
   function troll(color){
-      var socket = io.connect('http://localhost:4210');
-      var response;
-      socket.emit('getCurrentGames');
-      socket.on('currentGame', function(responser) {
-        response=responser;
-        var gameId = response[1].gameId;
         if(color == 'blue')
         {
           var betteam = 'blue';
@@ -196,13 +194,9 @@ transition-duration: .5s;
         else{
           var betteam = 'red';
         }
-        console.log(response);
-        console.log(gameId);
+        console.log(realGameId);
         console.log("betteam is " + betteam);
-      });
-    }
-  </script>
-  <script type='text/javascript'>
+      }
     function derp() {
       var socket = io.connect('http://localhost:4210');;
       displayHTML1 = "";
@@ -224,6 +218,7 @@ transition-duration: .5s;
           // document.getElementById(i).innerHTML = "same";
           document.getElementById("same").innerHTML = displayHTML1;
           document.getElementById("derpherp").innerHTML = response[i].gameId;
+          realGameId = response[i].gameId;
           document.getElementById("summoner1").innerHTML = response[i].participants[0].summonerName;
           document.getElementById("summoner2").innerHTML = response[i].participants[1].summonerName;
           document.getElementById("summoner3").innerHTML = response[i].participants[2].summonerName;

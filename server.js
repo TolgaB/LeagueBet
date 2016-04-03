@@ -165,15 +165,22 @@ client({ path:'https://na.api.pvp.net/api/lol/na/v2.2/match/'+gameId+'?api_key=d
 
 }
 
-lookForGame('Kristian1082', '1459652712717');
+checkWages();
 
 function checkWages() {
 wage.find({}, function(err, obj) {
 	for (var i = 0; i < obj.length; i++) {
 		var summonerName = obj[0].summoner1Name;
 		var gameStartTime = obj[0].gameStartTi
-
+		var didWin = lookForGame(summonerName, gameStartTime);
+		console.log("The user:", didWin);
+		if (didWin == true) {
+			//distribute money for said bet
 			//means the game ended, see if the user won
+		}
+		if (didwin == false) {
+			//Bye bye money
+		}
 		}
 	});
 	}
@@ -184,12 +191,31 @@ wage.find({}, function(err, obj) {
 function lookForGame(summoner1Name, gameStartTime) {
 	//First search summoner name then get the summonerid, use that to get match id, then get the match data
 	//https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/Kristian1082?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb
+	//https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/summid?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb
 	rest('https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/'+summoner1Name+'?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb').then(function(response) {
     var json = JSON.parse(response.entity);
     var SUMMONER_NAME_NOSPACES = summoner1Name.replace(" ", "");
     SUMMONER_NAME_NOSPACES = SUMMONER_NAME_NOSPACES.toLowerCase().trim();
     var summonerID = json[SUMMONER_NAME_NOSPACES].id;
     console.log(summonerID);
+    	rest('https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/'+summonerID+'?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb').then(function(response) {
+    		var json = JSON.parse(response.entity);
+    		var matches = json["matches"];
+    		var matchId = matches[0].matchId;
+    		//https://na.api.pvp.net/api/lol/na/v2.2/match/matchid?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb
+    		rest('https://na.api.pvp.net/api/lol/na/v2.2/match/'+matchId+'?api_key=dd32a661-7717-4722-bcc7-31f53ca42fdb').then(function(response) {
+    			var json = JSON.parse(response.entity);
+    			var matches = json["participantIdentities"]
+    			for (var i = 0; i < matches.length; i++) {
+    				if (matches[i].player.summonerName == summoner1Name) {
+    					var participantID = matches[i].participantId;
+    					var matchParticipants = json["participants"];
+    					console.log(matchParticipants[i].stats.winner);
+    					return matchParticipants[i].stats.winner;
+    				}
+    			}
+    		});
+    	});
 	});
 }
 
