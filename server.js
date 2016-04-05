@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
 app.use(express.static('public'));
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://tester:test@ds023118.mlab.com:23118/league');
+mongoose.connect('Code retracted to maintain security');
 var rest = require('rest');
 var rest, mime, client;
 rest = require('rest'),
@@ -192,52 +192,7 @@ setInterval(function(){
 
 function distributePrizes(didWin, summoner) {
 //search through the participants and they're bets according to this send them bitcoin or keep theyre bitcoin
-var Server = require('coinbase').Client;
-
-var server = new Server({
-  'apiKey': '5uVjwIev2ASxTszr',
-  'apiSecret': 'INl7fOXNI5k9Eqld3iPXCxS4oVXzUf6x',
-  'baseApiUri': 'https://api.sandbox.coinbase.com/v2/',
-  'tokenUri': 'https://api.sandbox.coinbase.com/oauth/token'
-});
-
-
-var Client = require('coinbase').Client;
-
-var client = new Client({
-  'apiKey': 'Hc0mYX0KDEaGusU0',
-  'apiSecret': 'GCG1eza4ZhfTfEZ88Zkq4G2fUc9uSArZ',
-  'baseApiUri': 'https://api.sandbox.coinbase.com/v2/',
-  'tokenUri': 'https://api.sandbox.coinbase.com/oauth/token'
-});
-	if (didWin == "true") {
-		console.log("you won");
-	server.getAccount('primary', function(err, account) {
-				  account.sendMoney({'to': 'mzp8R2rkUrGcho7jpsposT5jLj5RNmPeix',
-				                     'amount': '0.001',
-				                     'currency': 'BTC'}, function(err, tx) {
-				    console.log(tx);
-				  });
-				});
-				
-	}
-	else if (didWin == "false") {
-		console.log("you lost");
-		client.getAccount('primary', function(err, account) {
-				  account.sendMoney({'to': 'mhRyJ1abp8pHS43T6SZC7tTuUmmyP2fPBE',
-				                     'amount': '0.001',
-				                     'currency': 'BTC'}, function(err, tx) {
-				    console.log(tx);
-				  });
-				});
-	}
-	wage.remove({ summoner1Name: summoner }, function(err) {
-    if (!err) {
-         
-    }
-    else {
-           
-    }
+//Code retracted from github as to maintain security.
 });
 
 }
